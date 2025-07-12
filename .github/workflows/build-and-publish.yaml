@@ -1,0 +1,43 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+      - develop
+      - features/**
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # <-- Ensures GitVersion can see tags and all history
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.x' # Adjust to match your project's .NET version
+
+      - name: Install NUKE Global Tool
+        run: dotnet tool install --global Nuke.GlobalTool
+      - name: Install NerdBank Global Tool
+        run: nuke :add-package nbgv --version 3.7.115
+
+      - name: Restore dependencies
+        run: dotnet restore .\Source\Bars.Mvvm.sln
+
+      - name: Run NUKE Target
+        run: |
+            nuke Publish --configuration Release --NuGetApiKey "${{ secrets.NUGET_API_KEY }}"
+
+      - name: Publish outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: output
