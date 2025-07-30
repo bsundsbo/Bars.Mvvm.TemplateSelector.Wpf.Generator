@@ -9,7 +9,8 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 /// <see cref="BarTemplateSelectorAttribute"/>.
 /// </summary>
 [BarTemplateSelector(typeof(CustomDataTemplateSelectorResourceDictionary))]
-public partial class CustomDataTemplateSelector : BarControlTemplateSelector
+//[AutoTemplateSelector(typeof(CustomDataTemplateSelectorResourceDictionary))]
+public class CustomDataTemplateSelector : BarControlTemplateSelector
 {
     /// <summary>
     /// The template used for a blue button.

@@ -9,21 +9,7 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 public static class SampleControlKeys
 {
     /// <summary>
-    /// Represents the key for the copy control.
-    /// </summary>
-    public const string Copy = nameof(Copy);
-    /// <summary>
-    /// Represents the key for the cut control.
-    /// </summary>
-    public static string Cut => nameof(Cut);
-
-    /// <summary>
     /// Represents the key for the reference codes control.
     /// </summary>
     public static string ReferenceCodes => nameof(ReferenceCodes);
-
-    public static string BackstageTabHome => nameof(BackstageTabHome);
-    public static string BackstageTabNew => nameof(BackstageTabNew);
-    public static string BackstageButtonClose => nameof(BackstageButtonClose);
-    public static string BackstageButtonPrint => nameof(BackstageButtonPrint);
 }

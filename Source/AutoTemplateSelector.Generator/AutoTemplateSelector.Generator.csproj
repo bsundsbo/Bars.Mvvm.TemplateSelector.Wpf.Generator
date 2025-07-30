@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <RootNamespace>Bars.Mvvm.Resource.Generator</RootNamespace>
+        <RootNamespace>AutoTemplateSelector.Generator</RootNamespace>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -12,28 +12,28 @@
         <IsRoslynComponent>true</IsRoslynComponent>
     </PropertyGroup>
     <PropertyGroup>
-        <NoPackageAnalysis>true</NoPackageAnalysis>
-        <DevelopmentDependency>true</DevelopmentDependency>
-        <PackageId>Bars.Mvvm.TemplateSelector.Generator</PackageId>
+        <PackageId>AutoTemplateSelector.Generator</PackageId>
         <Authors>Bjørnar Sundsbø</Authors>
+        <Copyright>Bjørnar Sundsbø</Copyright>
+        <!-- TODO: Update the project URL -->
         <PackageProjectUrl>https://github.com/bsundsbo/Bars.Mvvm</PackageProjectUrl>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
-        <Copyright>Bjørnar Sundsbø</Copyright>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Description>Fluid Api Source Generator for ActiproSoftware WPF Bar Controls ViewModels.</Description>
-        <PackageTags>WPF, ActiproSoftware, Actipro, Windows, UI, XAML, MVVM, ViewModel, View, Library, .NET, Fluid, Fluid API, Extensions, Convenience methods, Source Generator </PackageTags>
+        <Description>Automate ResourceKeys and DataTemplate property mapping to reduce boilerplate code.</Description>
+        <PackageTags>WPF, Windows, UI, XAML, MVVM, ViewModel, View, Library, .NET, Source Generator, DataTemplateSelector, ItemTemplateSelector</PackageTags>
 
         <!-- Project is packable -->
-        <IsPackable>false</IsPackable>
-        <!-- Generates a package at build -->
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IsPackable>true</IsPackable>
         <!-- Do not include the generator as a lib dependency -->
-        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <DevelopmentDependency>true</DevelopmentDependency>
     </PropertyGroup>
 
     <ItemGroup>
         <!-- Package the generator in the analyzer directory of the nuget package -->
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="lib" Visible="false"/>
         <None Include="README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 

@@ -14,12 +14,17 @@
         <PackageReference Include="ActiproSoftware.Controls.WPF.Bars" />
         <PackageReference Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" />
         <PackageReference Include="ActiproSoftware.Controls.WPF.Shared" />
+        <PackageReference Include="Bars.Mvvm.FluentApi.Generator">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="LaDeak.ProtobufSourceGenerator" />
         <PackageReference Include="MahApps.Metro.IconPacks.Material" />
+        <PackageReference Include="protobuf-net.Core" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FluidApi.Generator\FluidApi.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-        <ProjectReference Include="..\TemplateSelector.Wpf.Generator\TemplateSelector.Wpf.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\AutoTemplateSelector.Generator\AutoTemplateSelector.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>

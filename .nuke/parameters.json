@@ -1,0 +1,5 @@
+{
+  "$schema": "build.schema.json",
+  "Solution": "Source/AutoTemplateSelector.sln",
+  "NuGetApiKey": "v1:vag2NuxEB7hwwwXbTDc/4x8qG0jadurb23vHQYykUl45xxuVLaeIhnYWIVgpZngl"
+}

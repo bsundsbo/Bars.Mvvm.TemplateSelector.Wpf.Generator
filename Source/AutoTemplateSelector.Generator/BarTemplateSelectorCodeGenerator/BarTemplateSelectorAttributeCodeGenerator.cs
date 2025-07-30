@@ -1,9 +1,8 @@
-﻿using Bars.Mvvm.FluidApi.Common;
-using System.Text;
+﻿using System.Text;
 using Scriban;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bars.Mvvm.Resource.Generator;
+namespace AutoTemplateSelector.Generator;
 
 /// <summary>
 /// This generator will generate the BarTemplateSelectorAttribute to decorate DataTemplateSelectors.

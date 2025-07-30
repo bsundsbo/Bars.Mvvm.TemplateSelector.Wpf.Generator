@@ -3,12 +3,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Bars.Mvvm.FluidApi.Common;
+namespace AutoTemplateSelector.Generator;
 
 /// <summary>
 /// Helper class for reading embedded resources.
 /// </summary>
-public static class EmbeddedResource
+internal static class EmbeddedResource
 {
     /// <summary>
     /// Get the content of an embedded resource as a string, using the relative path to the resource.

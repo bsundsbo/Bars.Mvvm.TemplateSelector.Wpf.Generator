@@ -31,20 +31,12 @@ public class SampleBarManager
             }
         );
 
-        // Register common images used by view models
-        RegisterImages();
-
         // Register view models for controls
         RegisterControlViewModels();
     }
 
     private void RegisterControlViewModels()
     {
-        ControlViewModels.Register(SampleControlKeys.Copy, key => new BarButtonViewModel(key)
-            .WithCommand(_notImplementedCommand, "Parameter"));
-        ControlViewModels.Register(SampleControlKeys.Cut, key => new RedBarButtonViewModel(key)
-            .WithDescription($"This red button is read from {nameof(CustomDataTemplateSelector)}")
-            .WithCommand(_notImplementedCommand, "I am a great red button read from template!"));
         ControlViewModels.Register(SampleControlKeys.ReferenceCodes, CreateReferenceCodeControl);
     }
 
@@ -66,15 +58,6 @@ public class SampleBarManager
             .WithItemTemplateSelector(new CustomGalleryTemplateSelector());
     }
 
-    private void RegisterImages()
-    {
-        // No images registered in this sample yet
-        ImageProvider.Register(SampleControlKeys.BackstageTabHome, options => options.CreateImage(PackIconMaterialKind.Home));
-        ImageProvider.Register(SampleControlKeys.BackstageTabNew, options => options.CreateImage(PackIconMaterialKind.NewBox));
-        ImageProvider.Register(SampleControlKeys.BackstageButtonPrint, options => options.CreateImage(PackIconMaterialKind.Printer));
-        ImageProvider.Register(SampleControlKeys.BackstageButtonClose, options => options.CreateImage(PackIconMaterialKind.Close));
-    }
-
     public RibbonViewModel GetRibbonViewModel()
     {
         return new RibbonViewModel()
@@ -83,44 +66,12 @@ public class SampleBarManager
             .WithGroupLabelMode(RibbonGroupLabelMode.Always)
             .WithLayoutMode(RibbonLayoutMode.Simplified)
             .WithIsApplicationButtonVisible()
-            .WithBackstage(GetBackstage())
-            // Simple footer convenience method
-            .WithFooter("I have a warning for you", BarImageOptions.Default.CreateImage(PackIconMaterialKind.Alert), RibbonFooterKind.Warning)
-            // Info bar footer with title, message, and icon
-            .WithFooter(new RibbonFooterInfoBarContentViewModel()
-                .WithSeverity(InfoBarSeverity.Error)
-                .WithTitle("Footer Title")
-                .WithMessage("This is a footer message!")
-                .WithIconSource(BarImageOptions.Default.CreateImage(PackIconMaterialKind.Percent)))
-            .WithFooter("Title", "Message", severity: InfoBarSeverity.Error, canClose: true)
             .WithApplicationButton(new RibbonApplicationButtonViewModel("ApplicationButton")
                 .WithLabel("File"))
             .WithTab(new RibbonTabViewModel("Tab1")
                 .WithLabel("Tab label")
                 .WithDescription("Tab description")
                 .WithGroup(new RibbonGroupViewModel("Edit group")
-                    .WithItem(ControlViewModels[SampleControlKeys.Copy])
-                    .WithItem(ControlViewModels[SampleControlKeys.Cut])
                     .WithItem(ControlViewModels[SampleControlKeys.ReferenceCodes])));
-    }
-
-    private RibbonBackstageViewModel GetBackstage()
-    {
-        return new RibbonBackstageViewModel()
-            .WithItem(new ImageRibbonBackstageTabViewModel(SampleControlKeys.BackstageTabHome)
-                .WithImages(ImageProvider)
-                .WithLabel("Home"))
-            .WithItem(new ImageRibbonBackstageTabViewModel(SampleControlKeys.BackstageTabNew)
-                .WithImages(ImageProvider)
-                .WithLabel("New"))
-            .WithItemSeparator(RibbonBackstageHeaderAlignment.Top)
-            .WithItem(new ImageRibbonBackstageHeaderButtonViewModel(SampleControlKeys.BackstageButtonClose)
-                .WithImages(ImageProvider)
-                .WithLabel("Close")
-                .WithCommand(_notImplementedCommand))
-            .WithItem(new ImageRibbonBackstageHeaderButtonViewModel(SampleControlKeys.BackstageButtonPrint)
-                .WithImages(ImageProvider)
-                .WithLabel("Print")
-                .WithCommand(_notImplementedCommand));
     }
 }

@@ -1,13 +1,11 @@
-﻿using Bars.Mvvm.FluidApi.Common;
-using System;
+﻿using System;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Scriban;
 using System.Collections.Immutable;
 
-namespace Bars.Mvvm.Resource.Generator;
+namespace AutoTemplateSelector.Generator;
 
 /// <summary>
 /// This class generates code based on attribute BarTemplateSelectorAttribute
@@ -43,7 +41,7 @@ internal class BarTemplateSelectorCodeGenerator
         sourceBuilder.AppendLine("/// <summary>");
         sourceBuilder.AppendLine("/// Represents a <see cref=\"ResourceDictionary\"/> related to the template resources objects defined in this assembly.");
         sourceBuilder.AppendLine("/// </summary>");
-        sourceBuilder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{nameof(BarTemplateSelectorSourceGenerator)}\", \"1.0.0\")]");
+        sourceBuilder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{nameof(AutoTemplateSelectorSourceGenerator)}\", \"1.0.0\")]");
         sourceBuilder.AppendLine($"public sealed partial class {dictionaryClassName} : ResourceDictionary");
         sourceBuilder.AppendLineStartBracket(0);
         sourceBuilder.Append(_resourceDictionaryInstanceTemplate.Render(new {
@@ -73,7 +71,7 @@ internal class BarTemplateSelectorCodeGenerator
         sourceBuilder.AppendLine("/// <summary>");
         sourceBuilder.AppendLine("/// Represents a <see cref=\"ResourceDictionary\"/> related to the template resources objects defined in this assembly.");
         sourceBuilder.AppendLine("/// </summary>");
-        sourceBuilder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{nameof(BarTemplateSelectorSourceGenerator)}\", \"1.0.0\")]");
+        sourceBuilder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{nameof(AutoTemplateSelectorSourceGenerator)}\", \"1.0.0\")]");
         sourceBuilder.AppendLine($"public static class {resourceKeyClassName}");
         sourceBuilder.AppendLineStartBracket(0);
         var properties = GetProperties(classModel);
@@ -96,7 +94,7 @@ internal class BarTemplateSelectorCodeGenerator
 
     private static void GenerateSelector(INamedTypeSymbol classModel, StringBuilder sourceBuilder)
     {
-        sourceBuilder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{nameof(BarTemplateSelectorSourceGenerator)}\", \"1.0.0\")]");
+        sourceBuilder.AppendLine($"[System.CodeDom.Compiler.GeneratedCode(\"{nameof(AutoTemplateSelectorSourceGenerator)}\", \"1.0.0\")]");
         sourceBuilder.AppendLine($"sealed partial class {classModel.Name}");
         sourceBuilder.AppendLineStartBracket(0);
         sourceBuilder.AppendLineWithIndent(1, $"public {classModel.Name}()");

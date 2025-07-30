@@ -1,17 +1,14 @@
-using Bars.Mvvm.FluidApi.Common;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
-using System.Collections.Immutable;
 
-namespace Bars.Mvvm.Resource.Generator;
+namespace AutoTemplateSelector.Generator;
 
 /// <summary>
 /// Source generator for generating ResourceKeys and mapping them to the DataTemplateSelector for less fuzz when creating new templates.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public class BarTemplateSelectorSourceGenerator : IIncrementalGenerator
+internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {

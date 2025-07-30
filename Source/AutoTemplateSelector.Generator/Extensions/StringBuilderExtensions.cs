@@ -2,12 +2,12 @@ using System.Text;
 
 // ReSharper disable UnusedMethodReturnValue.Global
 
-namespace Bars.Mvvm.FluidApi.Common;
+namespace AutoTemplateSelector.Generator;
 
 /// <summary>
 /// Contains extension methods for <see cref="StringBuilder"/> to simplify code generation.
 /// </summary>
-public static class StringBuilderExtensions
+internal static class StringBuilderExtensions
 {
     /// <summary>
     /// Appends a line with the specified indentation and value to the <see cref="StringBuilder"/>.
