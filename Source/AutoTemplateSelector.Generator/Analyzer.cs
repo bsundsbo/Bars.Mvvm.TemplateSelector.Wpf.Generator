@@ -8,7 +8,7 @@ using System.Linq;
 namespace AutoTemplateSelector.Generator;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class AutoSelectorGeneratorAnalyzer : DiagnosticAnalyzer
+internal sealed class Analyzer : DiagnosticAnalyzer
 {
     private const string _category = "AutoTemplateSelector";
 
@@ -31,6 +31,11 @@ internal sealed class AutoSelectorGeneratorAnalyzer : DiagnosticAnalyzer
             return;
         }
 
+        if (!IsClass(namedType))
+        {
+            return;
+        }
+
         if (!HasAutoTemplateSelectorAttribute(namedType))
         {
             return;
@@ -43,14 +48,19 @@ internal sealed class AutoSelectorGeneratorAnalyzer : DiagnosticAnalyzer
         }
     }
 
+    public static bool IsClass(INamedTypeSymbol? namedType)
+    {
+        return namedType?.TypeKind == TypeKind.Class;
+    }
+
     private static bool HasAutoTemplateSelectorAttribute(INamedTypeSymbol namedType)
     {
         return namedType.GetAttributes()
-            .Any(x => (x.AttributeClass?.Name is "BarTemplateSelectorAttribute" or nameof(AutoTemplateAttribute)) && x.AttributeClass.ContainingNamespace.Name == "AutoTemplateSelector.Generator");
+            .Any(x => (x.AttributeClass?.Name is nameof(AutoTemplateSelectorAttribute)) && x.AttributeClass.ContainingNamespace.ToDisplayString() == typeof(AutoTemplateSelectorAttribute).Namespace);
     }
 
-    private static bool IsPartial(INamedTypeSymbol namedType)
+    public static bool IsPartial(INamedTypeSymbol? namedType)
     {
-        return namedType.DeclaringSyntaxReferences.First().GetSyntax() is TypeDeclarationSyntax typeDeclaration && typeDeclaration.Modifiers.Any(x => x.IsKeyword() && x.IsKind(SyntaxKind.PartialKeyword));
+        return namedType?.DeclaringSyntaxReferences.First().GetSyntax() is TypeDeclarationSyntax typeDeclaration && typeDeclaration.Modifiers.Any(x => x.IsKeyword() && x.IsKind(SyntaxKind.PartialKeyword));
     }
 }

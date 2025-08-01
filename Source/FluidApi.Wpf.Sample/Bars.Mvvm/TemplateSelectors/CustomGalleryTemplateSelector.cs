@@ -1,4 +1,5 @@
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
+using AutoTemplateSelector.Generator;
 using System.Windows;
 
 namespace Bars.Mvvm.FluidGenerator.Sample;
@@ -13,7 +14,7 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 /// <c>Bars.Mvvm.TemplateSelector.SourceGenerator</c>.
 /// </para>
 /// </summary>
-[BarTemplateSelector(typeof(CustomGalleryTemplateSelectorResourceDictionary))]
+[AutoTemplateSelector(typeof(CustomGalleryTemplateSelectorResourceDictionary))]
 public partial class CustomGalleryTemplateSelector : BarGalleryItemTemplateSelector
 {
     /// <summary>

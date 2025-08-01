@@ -1,17 +1,10 @@
-using ActiproSoftware.Windows.Controls;
 using ActiproSoftware.Windows.Controls.Bars;
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
-using ActiproSoftware.Windows.Input;
-using MahApps.Metro.IconPacks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace Bars.Mvvm.FluidGenerator.Sample;
 
 public class SampleBarManager
 {
-    private readonly ICommand _notImplementedCommand;
-
     /// <summary>
     /// Gets the collection of control view models.
     /// </summary>
@@ -21,16 +14,6 @@ public class SampleBarManager
 
     public SampleBarManager()
     {
-        _notImplementedCommand = new DelegateCommand<object>(param =>
-            {
-                ThemedMessageBox.Show(param == null
-                        ? "Default command handler."
-                        : $"Default command handler with parameter '{param}'.",
-                    "Not Implemented",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        );
-
         // Register view models for controls
         RegisterControlViewModels();
     }

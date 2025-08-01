@@ -1,4 +1,5 @@
 ﻿using ActiproSoftware.Windows.Controls.Bars.Mvvm;
+using AutoTemplateSelector.Generator;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -6,11 +7,10 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 
 /// <summary>
 /// This class provides a custom data template selector using generated template mapping to showcase the
-/// <see cref="BarTemplateSelectorAttribute"/>.
+/// <see cref="AutoTemplateSelector"/>.
 /// </summary>
-[BarTemplateSelector(typeof(CustomDataTemplateSelectorResourceDictionary))]
-//[AutoTemplateSelector(typeof(CustomDataTemplateSelectorResourceDictionary))]
-public class CustomDataTemplateSelector : BarControlTemplateSelector
+[AutoTemplateSelector(typeof(CustomDataTemplateSelectorResourceDictionary))]
+public partial class CustomDataTemplateSelector : BarControlTemplateSelector
 {
     /// <summary>
     /// The template used for a blue button.

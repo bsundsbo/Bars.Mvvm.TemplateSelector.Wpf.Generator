@@ -11,7 +11,9 @@
     <PackageVersion Include="ActiproSoftware.Controls.Avalonia.Bars.Mvvm" Version="25.1.0" />
     <PackageVersion Include="Bars.Mvvm.FluentApi.Generator" Version="0.3.0" />
     <PackageVersion Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="all" />
+    <PackageVersion Include="LaDeak.ProtobufSourceGenerator" Version="1.5.1" />
     <PackageVersion Include="MahApps.Metro.IconPacks.Material" Version="5.1.0" />
+    <PackageVersion Include="protobuf-net.Core" Version="3.2.55" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.10.0.116381" />
     <PackageVersion Include="Nuke.Common" Version="9.0.4" />

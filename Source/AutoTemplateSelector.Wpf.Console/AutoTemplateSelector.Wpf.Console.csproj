@@ -11,10 +11,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AutoTemplateSelector.Generator\AutoTemplateSelector.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\AutoTemplateSelector.Generator\AutoTemplateSelector.Generator.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="true" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Remove="TemplateSelector\ConsoleDataTemplateSelectorResourceDictionary.xaml" />
+      <None Include="TemplateSelector\ConsoleDataTemplateSelectorResourceDictionary.xaml" />
     </ItemGroup>
 
 </Project>

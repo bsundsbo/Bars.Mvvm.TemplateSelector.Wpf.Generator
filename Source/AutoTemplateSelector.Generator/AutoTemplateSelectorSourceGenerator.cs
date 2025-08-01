@@ -12,13 +12,6 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterPostInitializationOutput(ctx =>
-        {
-            // Generate marker attribute for the source generator
-            ctx.AddSource($"{BarTemplateSelectorAttributeCodeGenerator.AttributeClassName}.g.cs",
-                BarTemplateSelectorAttributeCodeGenerator.Instance.Generate());
-        });
-
         var attributedClasses = context.SyntaxProvider
             .ForAttributeWithMetadataName(fullyQualifiedMetadataName: BarTemplateSelectorAttributeCodeGenerator.FullyQualifiedAttributeName,
 
@@ -28,7 +21,8 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
                     try
                     {
                         var classSymbol = ctx.TargetSymbol as INamedTypeSymbol;
-                        if (classSymbol is null)
+                        if (!Analyzer.IsClass(classSymbol) ||
+                            !Analyzer.IsPartial(classSymbol))
                         {
                             return default;
                         }
@@ -61,7 +55,7 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 
                 try
                 {
-                    string sourceCode = BarTemplateSelectorCodeGenerator.Instance.Generate(classSymbol, dictionarySymbol);
+                    string sourceCode = AutoTemplateSelectorCodeGenerator.Instance.Generate(classSymbol, dictionarySymbol);
 
                     ctx.AddSource($"{classSymbol.Name}.g.cs", sourceCode);
                     ctx.ReportDiagnostic(Diagnostic.Create(

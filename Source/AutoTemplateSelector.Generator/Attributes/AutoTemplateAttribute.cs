@@ -2,7 +2,7 @@
 using System;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class AutoTemplateAttribute : Attribute
+public sealed class AutoTemplateSelectorAttribute : Attribute
 {
     private Type ResourceDictionaryType { get; }
 
@@ -13,7 +13,7 @@ public sealed class AutoTemplateAttribute : Attribute
     /// <param name="resourceDictionaryType">The type of the resource dictionary that contains the templates.
     /// This type has to be a ResourceDictionary.
     ///</param>
-    public AutoTemplateAttribute(Type resourceDictionaryType)
+    public AutoTemplateSelectorAttribute(Type resourceDictionaryType)
     {
         ResourceDictionaryType = resourceDictionaryType;
     }

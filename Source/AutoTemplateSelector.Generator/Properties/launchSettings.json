@@ -3,7 +3,7 @@
   "profiles": {
     "DebugRoslynSourceGenerator": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "../TemplateSelector.Wpf.Console/TemplateSelector.Wpf.Console.csproj"
+      "targetProject": "../AutoTemplateSelector.Wpf.Console/AutoTemplateSelector.Wpf.Console.csproj"
     }
   }
 }

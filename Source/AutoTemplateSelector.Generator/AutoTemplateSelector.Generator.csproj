@@ -33,8 +33,9 @@
     <ItemGroup>
         <!-- Package the generator in the analyzer directory of the nuget package -->
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
-        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="lib" Visible="false"/>
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="lib/netstandard2.0" Visible="false"/>
         <None Include="README.md" Pack="true" PackagePath="\" />
+        <None Include="AnalyzerReleases.Shipped.md" />
     </ItemGroup>
 
     <ItemGroup>
@@ -56,6 +57,10 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Scriban" IncludeAssets="Build" PrivateAssets="all" />
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Remove="AnalyzerReleases.Unshipped.md" />
+      <AdditionalFiles Remove="AnalyzerReleases.Unshipped.md" />
     </ItemGroup>
 
 </Project>

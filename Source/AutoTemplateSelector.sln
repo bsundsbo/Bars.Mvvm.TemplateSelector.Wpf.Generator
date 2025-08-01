@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{115177F1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{9BBF685A-19EE-4B77-BF2A-F8AB3A9A4CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateSelector.Wpf.Console", "TemplateSelector.Wpf.Console\TemplateSelector.Wpf.Console.csproj", "{58D48DB1-EDD8-4372-81B5-2B87A5CD35E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTemplateSelector.Wpf.Console", "AutoTemplateSelector.Wpf.Console\AutoTemplateSelector.Wpf.Console.csproj", "{58D48DB1-EDD8-4372-81B5-2B87A5CD35E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "..\build\Build.csproj", "{2FA80F65-0EE2-4A79-9C4E-7706E774CD36}"
 EndProject

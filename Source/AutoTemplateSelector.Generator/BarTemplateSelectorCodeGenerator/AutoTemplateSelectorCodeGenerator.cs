@@ -8,12 +8,12 @@ using System.Collections.Immutable;
 namespace AutoTemplateSelector.Generator;
 
 /// <summary>
-/// This class generates code based on attribute BarTemplateSelectorAttribute
+/// This class generates code based on <see cref="AutoTemplateSelectorAttribute"/>
 /// to generate ResourceDictionary, ResourceKeys and map these within the ResourceDictionary.
 /// </summary>
-internal class BarTemplateSelectorCodeGenerator
+internal class AutoTemplateSelectorCodeGenerator
 {
-    public static BarTemplateSelectorCodeGenerator Instance { get; } = new();
+    public static AutoTemplateSelectorCodeGenerator Instance { get; } = new();
     private readonly Template _resourceKeyTemplate = Template.Parse(EmbeddedResource.GetContent("Templates/ComponentResourceKey.fg-cs"));
     private readonly Template _resourceDictionaryInstanceTemplate = Template.Parse(EmbeddedResource.GetContent("Templates/ResourceDictionaryInstance.fg-cs"));
 

@@ -24,7 +24,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AutoTemplateSelector.Generator\AutoTemplateSelector.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\AutoTemplateSelector.Generator\AutoTemplateSelector.Generator.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="true" />
     </ItemGroup>
 
     <ItemGroup>
