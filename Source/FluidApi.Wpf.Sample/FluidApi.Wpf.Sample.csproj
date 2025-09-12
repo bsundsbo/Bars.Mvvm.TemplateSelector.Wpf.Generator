@@ -11,6 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MahApps.Metro.IconPacks.Material" />
         <PackageReference Include="ActiproSoftware.Controls.WPF.Bars" />
         <PackageReference Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" />
         <PackageReference Include="ActiproSoftware.Controls.WPF.Shared" />
@@ -19,7 +20,6 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="LaDeak.ProtobufSourceGenerator" />
-        <PackageReference Include="MahApps.Metro.IconPacks.Material" />
         <PackageReference Include="protobuf-net.Core" />
     </ItemGroup>
 
