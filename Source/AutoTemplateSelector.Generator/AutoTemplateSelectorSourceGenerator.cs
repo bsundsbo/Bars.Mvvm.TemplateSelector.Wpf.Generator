@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using System;
+using System.Threading;
 
 namespace AutoTemplateSelector.Generator;
 
@@ -12,39 +13,12 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        string attributeName = typeof(AutoTemplateSelectorAttribute).FullName ?? string.Empty;
         var attributedClasses = context.SyntaxProvider
-            .ForAttributeWithMetadataName(fullyQualifiedMetadataName: BarTemplateSelectorAttributeCodeGenerator.FullyQualifiedAttributeName,
+            .ForAttributeWithMetadataName(fullyQualifiedMetadataName: attributeName,
 
                 predicate: static (node, _) => true, // accept all — filtered later
-                transform: static (ctx, ct) =>
-                {
-                    try
-                    {
-                        var classSymbol = ctx.TargetSymbol as INamedTypeSymbol;
-                        if (!Analyzer.IsClass(classSymbol) ||
-                            !Analyzer.IsPartial(classSymbol) ||
-                            !Analyzer.HasValidBaseClass(classSymbol))
-                        {
-                            return default;
-                        }
-
-                        var attr = ctx.Attributes.FirstOrDefault();
-                        if (attr is null || attr.ConstructorArguments.Length == 0)
-                        {
-                            return default;
-                        }
-
-                        var arg = attr.ConstructorArguments[0];
-                        return arg.Value is not INamedTypeSymbol dictType
-                            ? default((INamedTypeSymbol, INamedTypeSymbol))
-                            : (classSymbol, dictType);
-
-                    }
-                    catch (Exception)
-                    {
-                        return default((INamedTypeSymbol, INamedTypeSymbol));
-                    }
-                })
+                transform: TransformAnalyzedTypes)
             .Where(static pair => pair.Item1 is not null && pair.Item2 is not null)
             .Collect();
 
@@ -52,7 +26,7 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
         {
             foreach (var (classSymbol, dictionarySymbol) in items!)
             {
-                if (classSymbol is null || dictionarySymbol is null)
+                if (classSymbol is null)
                 {
                     continue;
                 }
@@ -76,5 +50,35 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
                 }
             }
         });
+    }
+
+#pragma warning disable SA1414
+    private static (INamedTypeSymbol?, INamedTypeSymbol) TransformAnalyzedTypes(GeneratorAttributeSyntaxContext ctx, CancellationToken ct)
+#pragma warning restore SA1414
+    {
+        try
+        {
+            var classSymbol = ctx.TargetSymbol as INamedTypeSymbol;
+            if (!Analyzer.IsClass(classSymbol) || !Analyzer.IsPartial(classSymbol) || !Analyzer.HasValidBaseClass(classSymbol))
+            {
+                return default;
+            }
+
+            var attr = ctx.Attributes.FirstOrDefault();
+            if (attr is null || attr.ConstructorArguments.Length == 0)
+            {
+                return default;
+            }
+
+            var arg = attr.ConstructorArguments[0];
+            return arg.Value is not INamedTypeSymbol dictType
+                ? default((INamedTypeSymbol, INamedTypeSymbol))
+                : (classSymbol, dictType);
+
+        }
+        catch (Exception)
+        {
+            return default((INamedTypeSymbol, INamedTypeSymbol));
+        }
     }
 }

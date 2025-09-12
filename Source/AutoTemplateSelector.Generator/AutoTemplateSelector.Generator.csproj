@@ -36,7 +36,6 @@
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
     </ItemGroup>
     <ItemGroup>
-      <EmbeddedResource Include="BarTemplateSelectorCodeGenerator\Templates\BarTemplateSelectorAttribute.fg-cs" />
       <EmbeddedResource Include="BarTemplateSelectorCodeGenerator\Templates\ComponentResourceKey.fg-cs" />
       <EmbeddedResource Include="BarTemplateSelectorCodeGenerator\Templates\ResourceDictionaryInstance.fg-cs" />
     </ItemGroup>
