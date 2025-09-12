@@ -21,6 +21,11 @@ public partial class ConsoleControlTemplateSelector : ItemContainerTemplateSelec
     /// </summary>
     public ItemContainerTemplate RedButtonTemplate { get; set; }
 
+    /// <summary>
+    /// Gets or sets template for green button.
+    /// </summary>
+    private ItemContainerTemplate GreenButtonTemplate { get; set; }
+
     /// <inheritdoc/>
     public override DataTemplate SelectTemplate(object item, ItemsControl parentItemsControl)
     {

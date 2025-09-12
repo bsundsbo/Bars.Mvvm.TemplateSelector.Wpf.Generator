@@ -27,7 +27,7 @@ public partial class NullableDataTemplateSelector : BarControlTemplateSelector
     /// <summary>
     /// The template used for a red button.
     /// </summary>
-    public ItemContainerTemplate RedButtonTemplate { get; set; }
+    private ItemContainerTemplate RedButtonTemplate { get; set; }
 
     public override DataTemplate SelectTemplate(object item, ItemsControl parentItemsControl)
     {
