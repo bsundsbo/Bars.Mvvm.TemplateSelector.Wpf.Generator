@@ -11,13 +11,13 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 /// The type passed to the constructor of the attribute must be a resource dictionary with x:Class referencing this class in
 /// the XAML.
 /// <para>
-/// The properties of <see cref="NullableDataTemplateSelector"/> are generated into <see cref="NullableDataTemplateSelectorResourceDictionary"/>
-/// and mapped within the generated partial class <see cref="NullableDataTemplateSelector"/> so they can be returned in the
+/// The properties of <see cref="NonNullableDataTemplateSelector"/> are generated into <see cref="NonNullableDataTemplateSelectorResourceDictionary"/>
+/// and mapped within the generated partial class <see cref="NonNullableDataTemplateSelector"/> so they can be returned in the
 /// overriden <see cref="SelectTemplate"/> method.
 /// </para>
 /// </summary>
-[AutoTemplateSelector(typeof(NullableDataTemplateSelectorResourceDictionary))]
-public partial class NullableDataTemplateSelector : BarControlTemplateSelector
+[AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
+public partial class NonNullableDataTemplateSelector : BarControlTemplateSelector
 {
     /// <summary>
     /// The template used for a blue button.

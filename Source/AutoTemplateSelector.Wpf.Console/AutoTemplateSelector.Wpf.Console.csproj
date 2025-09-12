@@ -19,6 +19,7 @@
         <PackageReference Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" />
     </ItemGroup>
     <ItemGroup>
+      <None Include="TemplateSelector\NullableTemplateSelectorResourceDictionary.xaml" />
       <Page Remove="TemplateSelector\ConsoleDataTemplateSelectorResourceDictionary.xaml" />
       <None Include="TemplateSelector\ConsoleDataTemplateSelectorResourceDictionary.xaml" />
     </ItemGroup>

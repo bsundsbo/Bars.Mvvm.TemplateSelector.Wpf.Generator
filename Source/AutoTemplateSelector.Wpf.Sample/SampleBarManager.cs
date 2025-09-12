@@ -38,13 +38,13 @@ public class SampleBarManager
             .WithLabel("Reference Codes")
             .WithTextPath(nameof(ReferenceCodeGalleryItemViewModel.Label))
             .WithDescription("This is a combo box with a custom template selector.")
-            .WithItemTemplateSelector(new CustomGalleryTemplateSelector());
+            .WithItemTemplateSelector(new NullableGalleryTemplateSelector());
     }
 
     public RibbonViewModel GetRibbonViewModel()
     {
         return new RibbonViewModel()
-            .WithItemContainerTemplateSelector(new NullableDataTemplateSelector())
+            .WithItemContainerTemplateSelector(new NonNullableDataTemplateSelector())
             .WithQuickAccessToolBarMode(RibbonQuickAccessToolBarMode.None)
             .WithGroupLabelMode(RibbonGroupLabelMode.Always)
             .WithLayoutMode(RibbonLayoutMode.Simplified)

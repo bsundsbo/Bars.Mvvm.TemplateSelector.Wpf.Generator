@@ -16,8 +16,6 @@
     </ItemGroup>
     <!-- Sample application references -->
     <ItemGroup>
-        <PackageVersion Include="LaDeak.ProtobufSourceGenerator" Version="1.5.1"/>
-        <PackageVersion Include="protobuf-net.Core" Version="3.2.56"/>
         <PackageVersion Include="ActiproSoftware.Controls.WPF" Version="$(ActiproWpfVersion)"/>
         <PackageVersion Include="ActiproSoftware.Controls.WPF.Bars" Version="$(ActiproWpfVersion)"/>
         <PackageVersion Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" Version="$(ActiproWpfVersion)"/>

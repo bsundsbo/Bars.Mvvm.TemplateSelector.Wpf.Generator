@@ -19,8 +19,6 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="LaDeak.ProtobufSourceGenerator" />
-        <PackageReference Include="protobuf-net.Core" />
     </ItemGroup>
 
     <ItemGroup>
@@ -34,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Bars.Mvvm\TemplateSelectors\NullableDataTemplateSelectorResourceDictionary.xaml">
+      <Page Update="Bars.Mvvm\TemplateSelectors\NonNullableDataTemplateSelectorResourceDictionary.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>
