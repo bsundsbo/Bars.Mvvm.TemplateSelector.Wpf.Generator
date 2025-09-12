@@ -9,20 +9,23 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 /// This class provides a custom data template selector using generated template mapping to showcase the
 /// <see cref="AutoTemplateSelector"/>.
 /// </summary>
+/// <remarks>
+/// This class is marked with #nullable enabled
+/// </remarks>
 [AutoTemplateSelector(typeof(CustomDataTemplateSelectorResourceDictionary))]
-public partial class CustomDataTemplateSelector : BarControlTemplateSelector
+public partial class NullableDataTemplateSelector : BarControlTemplateSelector
 {
     /// <summary>
     /// The template used for a blue button.
     /// </summary>
-    public ItemContainerTemplate BlueButtonTemplate { get; set; }
+    public ItemContainerTemplate? BlueButtonTemplate { get; set; }
 
     /// <summary>
     /// The template used for a red button.
     /// </summary>
-    public ItemContainerTemplate RedButtonTemplate { get; set; }
+    public ItemContainerTemplate? RedButtonTemplate { get; set; }
 
-    public override DataTemplate SelectTemplate(object item, ItemsControl parentItemsControl)
+    public override DataTemplate? SelectTemplate(object item, ItemsControl parentItemsControl)
     {
         return item switch
         {

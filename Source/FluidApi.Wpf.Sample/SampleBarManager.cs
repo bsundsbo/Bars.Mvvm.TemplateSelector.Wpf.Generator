@@ -44,7 +44,7 @@ public class SampleBarManager
     public RibbonViewModel GetRibbonViewModel()
     {
         return new RibbonViewModel()
-            .WithItemContainerTemplateSelector(new CustomDataTemplateSelector())
+            .WithItemContainerTemplateSelector(new NullableDataTemplateSelector())
             .WithQuickAccessToolBarMode(RibbonQuickAccessToolBarMode.None)
             .WithGroupLabelMode(RibbonGroupLabelMode.Always)
             .WithLayoutMode(RibbonLayoutMode.Simplified)
