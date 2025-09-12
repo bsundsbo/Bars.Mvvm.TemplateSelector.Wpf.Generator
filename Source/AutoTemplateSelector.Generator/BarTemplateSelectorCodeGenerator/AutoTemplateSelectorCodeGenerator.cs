@@ -123,7 +123,7 @@ internal class AutoTemplateSelectorCodeGenerator
 
         var properties = classSymbol.GetMembers()
             .OfType<IPropertySymbol>()
-            .Where(p => p.DeclaredAccessibility == Accessibility.Public && p is {IsStatic: false, IsReadOnly: false})
+            .Where(p =>  p is {IsStatic: false, IsReadOnly: false})
             .ToImmutableArray();
         return properties;
     }
