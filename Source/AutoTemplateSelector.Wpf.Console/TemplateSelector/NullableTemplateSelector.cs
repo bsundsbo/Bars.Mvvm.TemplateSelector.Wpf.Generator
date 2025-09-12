@@ -19,7 +19,7 @@ public partial class NullableTemplateSelector : ItemContainerTemplateSelector
     /// <summary>
     /// Gets or sets template for green button.
     /// </summary>
-    private ItemContainerTemplate GreenButtonTemplate { get; set; }
+    private ItemContainerTemplate? GreenButtonTemplate { get; set; }
 
     /// <inheritdoc/>
     public override DataTemplate? SelectTemplate(object item, ItemsControl parentItemsControl)
