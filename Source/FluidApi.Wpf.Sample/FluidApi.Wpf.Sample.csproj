@@ -34,7 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Bars.Mvvm\TemplateSelectors\CustomDataTemplateSelectorResourceDictionary.xaml">
+      <Page Update="Bars.Mvvm\TemplateSelectors\NullableDataTemplateSelectorResourceDictionary.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>

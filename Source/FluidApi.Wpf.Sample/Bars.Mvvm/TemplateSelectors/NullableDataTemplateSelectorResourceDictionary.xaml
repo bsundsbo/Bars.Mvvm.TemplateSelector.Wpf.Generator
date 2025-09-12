@@ -1,14 +1,17 @@
-﻿<ResourceDictionary x:Class="Bars.Mvvm.FluidGenerator.Sample.CustomDataTemplateSelectorResourceDictionary"
+﻿<!--
+    x:Class is required to wire up the code-behind file for this resource dictionary.
+    The name of the class matches that of the parameter to the AutoTemplateSelectorAttribute.
+-->
+<ResourceDictionary x:Class="Bars.Mvvm.FluidGenerator.Sample.NullableDataTemplateSelectorResourceDictionary"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sample="clr-namespace:Bars.Mvvm.FluidGenerator.Sample"
                     xmlns:bars="http://schemas.actiprosoftware.com/winfx/xaml/bars">
-
-    <!-- x:Class is required to wire up the code-behind file for this resource dictionary.
-         The resource dictionary resource key is set to "CustomDataTemplateSelectorResourceKeys"
-         is auto-generated so it can be referenced in this file to declare the appearance of the various
-         templates declared in CustomDataTemplateSelector. -->
-    <ItemContainerTemplate x:Key="{x:Static sample:CustomDataTemplateSelectorResourceKeys.BlueButtonTemplate}"
+    <!--
+        The x:Key refers to a generated static class with a ResourceKeys suffix that starts with the same
+        name as the attributed TemplateSelector.
+    -->
+    <ItemContainerTemplate x:Key="{x:Static sample:NullableDataTemplateSelectorResourceKeys.BlueButtonTemplate}"
                            DataType="sample:BlueBarButtonViewModel">
         <ItemContainerTemplate.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -35,7 +38,7 @@
             Visibility="{Binding IsVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </ItemContainerTemplate>
 
-    <ItemContainerTemplate x:Key="{x:Static sample:CustomDataTemplateSelectorResourceKeys.RedButtonTemplate}"
+    <ItemContainerTemplate x:Key="{x:Static sample:NullableDataTemplateSelectorResourceKeys.RedButtonTemplate}"
                            DataType="sample:RedBarButtonViewModel">
         <ItemContainerTemplate.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

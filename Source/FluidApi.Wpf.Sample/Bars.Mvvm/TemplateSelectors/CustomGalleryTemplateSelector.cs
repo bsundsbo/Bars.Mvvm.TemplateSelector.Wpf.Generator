@@ -5,13 +5,13 @@ using System.Windows;
 namespace Bars.Mvvm.FluidGenerator.Sample;
 
 /// <summary>
-/// This class has to be partial, and decorated with <see cref="BarTemplateSelectorAttribute"/>,
+/// This class has to be partial, and decorated with <see cref="AutoTemplateSelector"/>,
 /// The type passed to the constructor of the attribute must be a resource dictionary with x:Class referencing this class in
 /// the XAML.
-///
 /// <para>
-/// The properties of <see cref="CustomDataTemplateSelectorResourceKeys"/> are gnnerated by the Source Generator package
-/// <c>Bars.Mvvm.TemplateSelector.SourceGenerator</c>.
+/// The properties of <see cref="CustomGalleryTemplateSelector"/> are generated into <see cref="CustomGalleryTemplateSelectorResourceKeys"/>
+/// and mapped within the generated partial class <see cref="CustomGalleryTemplateSelector"/> so they can be returned in the
+/// overriden <see cref="SelectTemplate"/> method.
 /// </para>
 /// </summary>
 [AutoTemplateSelector(typeof(CustomGalleryTemplateSelectorResourceDictionary))]
