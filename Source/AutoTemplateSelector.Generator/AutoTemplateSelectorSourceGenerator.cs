@@ -22,7 +22,8 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
                     {
                         var classSymbol = ctx.TargetSymbol as INamedTypeSymbol;
                         if (!Analyzer.IsClass(classSymbol) ||
-                            !Analyzer.IsPartial(classSymbol))
+                            !Analyzer.IsPartial(classSymbol) ||
+                            !Analyzer.HasValidBaseClass(classSymbol))
                         {
                             return default;
                         }
@@ -51,6 +52,11 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
         {
             foreach (var (classSymbol, dictionarySymbol) in items!)
             {
+                if (classSymbol is null || dictionarySymbol is null)
+                {
+                    continue;
+                }
+
                 var dictName = dictionarySymbol.ToDisplayString();
 
                 try

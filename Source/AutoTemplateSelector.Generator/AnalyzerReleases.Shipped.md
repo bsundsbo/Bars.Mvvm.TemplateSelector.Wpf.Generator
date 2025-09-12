@@ -10,3 +10,4 @@
 | Rule ID | Category              | Severity | Notes                                                                 |
 |---------|----------------------|----------|-----------------------------------------------------------------------|
 | ATS01   | AutoTemplateSelector | Error    | Requires classes decorated with the attribute to be marked as partial |
+| ATS02   | AutoTemplateSelector | Error    | Class must derive from DataTemplate or ItemControlTemplate            |

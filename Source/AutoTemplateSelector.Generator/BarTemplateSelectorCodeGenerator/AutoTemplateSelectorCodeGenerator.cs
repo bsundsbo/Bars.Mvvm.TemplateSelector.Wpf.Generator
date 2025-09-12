@@ -103,12 +103,10 @@ internal class AutoTemplateSelectorCodeGenerator
         var properties = GetProperties(classModel);
         sourceBuilder.AppendLineWithIndent(2, $"var dictionary = {classModel.Name}ResourceDictionary.Instance;");
 
-        foreach (var property in properties)
+        foreach (var property in Enumerable.OfType<IPropertySymbol>(properties))
         {
-            if (property != null)
-            {
-                sourceBuilder.AppendLineWithIndent(2, $"{property.Name} = dictionary[{classModel.Name}ResourceKeys.{property.Name}] as {property.Type};");
-            }
+            // TODO: check for nullability and omit ? if nullable in cast
+            sourceBuilder.AppendLineWithIndent(2, $"{property.Name} = dictionary[{classModel.Name}ResourceKeys.{property.Name}] as {property.Type};");
         }
 
         sourceBuilder.AppendLineEndBracket(1);

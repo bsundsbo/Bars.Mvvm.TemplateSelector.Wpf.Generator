@@ -14,8 +14,10 @@ internal sealed class Analyzer : DiagnosticAnalyzer
 
     private static readonly DiagnosticDescriptor _rule01 = new("ATS01", "Type must be partial", "Type with AutoTemplateSelectorAttribute must be partial", _category,
         DiagnosticSeverity.Error, isEnabledByDefault: true, description: "Type must be partial with ProtoContract attribute.");
+    private static readonly DiagnosticDescriptor _rule02 = new("ATS02", "Missing or incorrect base type", "Class must derive from DataTemplate or ItemControlTemplate", _category,
+        DiagnosticSeverity.Error, isEnabledByDefault: true, description: "Class must derive from DataTemplate or ItemControlTemplate.");
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return [_rule01]; } }
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return [_rule01, _rule02]; } }
 
     public override void Initialize(AnalysisContext context)
     {
@@ -46,6 +48,30 @@ internal sealed class Analyzer : DiagnosticAnalyzer
             var diagnostic = Diagnostic.Create(_rule01, context.Symbol.Locations.First(), string.Empty);
             context.ReportDiagnostic(diagnostic);
         }
+
+        if (!HasValidBaseClass(namedType))
+        {
+            var diagnostic = Diagnostic.Create(_rule02, context.Symbol.Locations.First(), "Base class must be ItemTemplateSelector or DataTemplateSelector");
+            context.ReportDiagnostic(diagnostic);
+        }
+    }
+
+    public static bool HasValidBaseClass(INamedTypeSymbol? namedType)
+    {
+        if (namedType?.BaseType is null)
+        {
+            return false;
+        }
+
+        // Check if the base class is a valid ResourceDictionary or DataTemplateSelector
+        bool hasCorrectBaseClass = namedType.BaseType.ToDisplayString() == "System.Windows.Controls.ItemContainerTemplateSelector" ||
+               namedType.BaseType.ToDisplayString() == "System.Windows.Controls.DataTemplateSelector";
+        if (hasCorrectBaseClass)
+        {
+            return true;
+        }
+
+        return HasValidBaseClass(namedType.BaseType);
     }
 
     public static bool IsClass(INamedTypeSymbol? namedType)
