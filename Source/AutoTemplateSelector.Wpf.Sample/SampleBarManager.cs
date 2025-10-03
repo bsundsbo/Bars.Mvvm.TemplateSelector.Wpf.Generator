@@ -38,7 +38,7 @@ public class SampleBarManager
             .WithLabel("Reference Codes")
             .WithTextPath(nameof(ReferenceCodeGalleryItemViewModel.Label))
             .WithDescription("This is a combo box with a custom template selector.")
-            .WithItemTemplateSelector(new NullableGalleryTemplateSelector());
+            .WithItemTemplateSelector(new NullableGalleryItemTemplateSelector());
     }
 
     public RibbonViewModel GetRibbonViewModel()

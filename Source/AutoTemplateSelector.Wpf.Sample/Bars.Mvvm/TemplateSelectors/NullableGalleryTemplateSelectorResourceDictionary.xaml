@@ -10,7 +10,7 @@
         The x:Key refers to a generated static class with a ResourceKeys suffix that starts with the same
         name as the attributed TemplateSelector.
     -->
-    <DataTemplate x:Key="{x:Static sample:NullableGalleryTemplateSelectorResourceKeys.ReferenceCodeMenuItemTemplate}"
+    <DataTemplate x:Key="{x:Static sample:NullableGalleryItemTemplateSelectorResourceKeys.ReferenceCodeMenuItemTemplate}"
                   DataType="{x:Type sample:ReferenceCodeGalleryItemViewModel}">
         <DockPanel>
             <Grid DockPanel.Dock="Left">
@@ -23,7 +23,7 @@
         </DockPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="x:Static sample:NullableGalleryTemplateSelectorResourceKeys.ReferenceCodeTemplate}"
+    <DataTemplate x:Key="x:Static sample:NullableGalleryItemTemplateSelectorResourceKeys.ReferenceCodeTemplate}"
                   DataType="{x:Type sample:ReferenceCodeGalleryItemViewModel}">
         <DockPanel>
             <Grid DockPanel.Dock="Left">

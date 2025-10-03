@@ -1,3 +1,4 @@
+#nullable enable
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 using AutoTemplateSelector.Generator;
 using System.Windows;
@@ -9,13 +10,13 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 /// The type passed to the constructor of the attribute must be a resource dictionary with x:Class referencing this class in
 /// the XAML.
 /// <para>
-/// The properties of <see cref="NullableGalleryTemplateSelector"/> are generated into <see cref="CustomGalleryTemplateSelectorResourceKeys"/>
-/// and mapped within the generated partial class <see cref="NullableGalleryTemplateSelector"/> so they can be returned in the
+/// The properties of <see cref="NullableGalleryItemTemplateSelector"/> are generated into <see cref="CustomGalleryTemplateSelectorResourceKeys"/>
+/// and mapped within the generated partial class <see cref="NullableGalleryItemTemplateSelector"/> so they can be returned in the
 /// overriden <see cref="SelectTemplate"/> method.
 /// </para>
 /// </summary>
 [AutoTemplateSelector(typeof(NullableGalleryTemplateSelectorResourceDictionary))]
-public partial class NullableGalleryTemplateSelector : BarGalleryItemTemplateSelector
+public partial class NullableGalleryItemTemplateSelector : BarGalleryItemTemplateSelector
 {
     /// <summary>
     /// Template for a reference code gallery item.
