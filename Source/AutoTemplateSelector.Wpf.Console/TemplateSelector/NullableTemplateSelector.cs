@@ -1,5 +1,4 @@
-﻿#nullable enable
-using AutoTemplateSelector.Generator;
+﻿using AutoTemplateSelector.Generator;
 using System.Windows;
 using System.Windows.Controls;
 

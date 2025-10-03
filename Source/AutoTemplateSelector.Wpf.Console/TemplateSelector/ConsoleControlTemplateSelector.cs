@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 using AutoTemplateSelector.Generator;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,7 +10,7 @@ namespace TemplateSelector.Wpf.Console;
 /// some doc to be filled in later.
 /// </summary>
 [AutoTemplateSelector(typeof(ConsoleControlTemplateSelectorResourceDictionary))]
-public partial class ConsoleControlTemplateSelector : ItemContainerTemplateSelector
+public partial class ConsoleControlTemplateSelector : BarControlTemplateSelector
 {
     /// <summary>
     /// Gets or sets template for blue button.
