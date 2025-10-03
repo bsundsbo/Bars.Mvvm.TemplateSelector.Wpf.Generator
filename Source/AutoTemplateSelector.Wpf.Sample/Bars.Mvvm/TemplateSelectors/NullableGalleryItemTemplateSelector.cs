@@ -15,7 +15,7 @@ namespace Bars.Mvvm.FluidGenerator.Sample;
 /// overriden <see cref="SelectTemplate"/> method.
 /// </para>
 /// </summary>
-[AutoTemplateSelector(typeof(NullableGalleryTemplateSelectorResourceDictionary))]
+[AutoTemplateSelector(typeof(NullableGalleryItemTemplateSelectorResourceDictionary))]
 public partial class NullableGalleryItemTemplateSelector : BarGalleryItemTemplateSelector
 {
     /// <summary>

@@ -20,10 +20,11 @@ public class SampleBarManager
 
     private void RegisterControlViewModels()
     {
-        ControlViewModels.Register(SampleControlKeys.ReferenceCodes, CreateReferenceCodeControl);
+        ControlViewModels.Register(SampleControlKeys.ComboBox, CreateReferenceCodeComboBox);
+        ControlViewModels.Register(SampleControlKeys.Gallery, CreateReferenceCodeGallery);
     }
 
-    private static IHasKey CreateReferenceCodeControl(string key)
+    private static IHasKey CreateReferenceCodeComboBox(string key)
     {
         var items = new List<ReferenceCode>
         {
@@ -36,8 +37,34 @@ public class SampleBarManager
             .ToList();
         return new BarComboBoxViewModel(key, galleryItems)
             .WithLabel("Reference Codes")
-            .WithTextPath(nameof(ReferenceCodeGalleryItemViewModel.Label))
+            .WithTextPath(nameof(ReferenceCodeGalleryItemViewModel.Code))
+            .WithIsReadOnly(false)
+            .WithPlaceholderText("Code")
+            .WithUseMenuItemAppearance()
             .WithDescription("This is a combo box with a custom template selector.")
+            .WithItemTemplateSelector(new NullableGalleryItemTemplateSelector());
+    }
+
+    private static IHasKey CreateReferenceCodeGallery(string key)
+    {
+        var items = new List<ReferenceCode>
+        {
+            new ("Code1", "Description for Code1"),
+            new ("Code2", "Description for Code2"),
+            new ("Code3", "Description for Code3"),
+            new ("Code4", "Description for Code4"),
+            new ("Code5", "Description for Code5"),
+            new ("Code6", "Description for Code6")
+        };
+
+        var galleryItems = items.Select(item => new ReferenceCodeGalleryItemViewModel(item))
+            .ToList();
+        return new BarGalleryViewModel(key, galleryItems)
+            .WithLabel("Reference Codes")
+            .WithToolBarItemVariantBehavior(ItemVariantBehavior.AlwaysMedium)
+            .WithMinMediumRibbonColumnCount(2)
+            .WithMinLargeRibbonColumnCount(2)
+            .WithMaxRibbonColumnCount(8)
             .WithItemTemplateSelector(new NullableGalleryItemTemplateSelector());
     }
 
@@ -55,6 +82,9 @@ public class SampleBarManager
                 .WithLabel("Tab label")
                 .WithDescription("Tab description")
                 .WithGroup(new RibbonGroupViewModel("Edit group")
-                    .WithItem(ControlViewModels[SampleControlKeys.ReferenceCodes])));
+                    .WithItem(ControlViewModels[SampleControlKeys.ComboBox])
+                    .WithItem(ControlViewModels[SampleControlKeys.Gallery])
+                )
+            );
     }
 }

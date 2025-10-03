@@ -11,5 +11,7 @@ public static class SampleControlKeys
     /// <summary>
     /// Represents the key for the reference codes control.
     /// </summary>
-    public static string ReferenceCodes => nameof(ReferenceCodes);
+    public static string ComboBox => nameof(ComboBox);
+
+    public static string Gallery => nameof(Gallery);
 }
