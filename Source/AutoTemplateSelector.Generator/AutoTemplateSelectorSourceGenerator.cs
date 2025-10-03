@@ -19,12 +19,12 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 
                 predicate: static (node, _) => true, // accept all — filtered later
                 transform: TransformAnalyzedTypes)
-            .Where(static pair => pair.Item1 is not null && pair.Item2 is not null)
+            .Where(static pair => pair.ClassSymbol is not null && pair.DictionaryType is not null)
             .Collect();
 
         context.RegisterSourceOutput(attributedClasses, static (ctx, items) =>
         {
-            foreach (var (classSymbol, dictionarySymbol) in items!)
+            foreach (var (classSymbol, dictionarySymbol, isNullableContext) in items!)
             {
                 if (classSymbol is null)
                 {
@@ -35,7 +35,7 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 
                 try
                 {
-                    string sourceCode = AutoTemplateSelectorCodeGenerator.Instance.Generate(classSymbol, dictionarySymbol);
+                    string sourceCode = AutoTemplateSelectorCodeGenerator.Instance.Generate(classSymbol, dictionarySymbol, isNullableContext);
 
                     ctx.AddSource($"{classSymbol.Name}.g.cs", sourceCode);
                     ctx.ReportDiagnostic(Diagnostic.Create(
@@ -53,13 +53,13 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
     }
 
 #pragma warning disable SA1414
-    private static (INamedTypeSymbol?, INamedTypeSymbol) TransformAnalyzedTypes(GeneratorAttributeSyntaxContext ctx, CancellationToken ct)
+    private static (INamedTypeSymbol? ClassSymbol, INamedTypeSymbol DictionaryType, bool IsNullableContext) TransformAnalyzedTypes(GeneratorAttributeSyntaxContext ctx, CancellationToken ct)
 #pragma warning restore SA1414
     {
         try
         {
             var classSymbol = ctx.TargetSymbol as INamedTypeSymbol;
-            if (!Analyzer.IsClass(classSymbol) || !Analyzer.IsPartial(classSymbol) || !Analyzer.HasValidBaseClass(classSymbol))
+            if (classSymbol == null || !Analyzer.IsClass(classSymbol) || !Analyzer.IsPartial(classSymbol) || !Analyzer.HasValidBaseClass(classSymbol))
             {
                 return default;
             }
@@ -71,14 +71,16 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
             }
 
             var arg = attr.ConstructorArguments[0];
+            var nullableContext = NullableContextUtilities.GetEffectiveNullableContext(ctx.SemanticModel, ctx.TargetNode);
+            bool isNullable = nullableContext == NullableContextOptions.Enable;
             return arg.Value is not INamedTypeSymbol dictType
-                ? default((INamedTypeSymbol, INamedTypeSymbol))
-                : (classSymbol, dictType);
+                ? default((INamedTypeSymbol, INamedTypeSymbol, bool))
+                : (classSymbol, dictType, isNullable);
 
         }
         catch (Exception)
         {
-            return default((INamedTypeSymbol, INamedTypeSymbol));
+            return default((INamedTypeSymbol, INamedTypeSymbol, bool));
         }
     }
 }
