@@ -1,6 +1,6 @@
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
 /// Implementation of <see cref="BarGalleryItemViewModel{T}"/> for <see cref="ReferenceCode"/>.

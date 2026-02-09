@@ -1,10 +1,10 @@
-﻿<ResourceDictionary x:Class="TemplateSelector.Wpf.Console.NullableTemplateSelectorResourceDictionary"
+﻿<ResourceDictionary x:Class="AutoTemplateSelector.Wpf.Console.NullableTemplateSelectorResourceDictionary"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:console="clr-namespace:TemplateSelector.Wpf.Console"
                     xmlns:bars="http://schemas.actiprosoftware.com/winfx/xaml/bars">
     <ItemContainerTemplate x:Key="{x:Static console:ConsoleControlTemplateSelectorResourceKeys.BlueButtonTemplate}"
-                           DataType="sample:BlueBarButtonViewModel">
+                           DataType="console:BlueBarButtonViewModel">
         <ItemContainerTemplate.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ItemContainerTemplate.Resources>

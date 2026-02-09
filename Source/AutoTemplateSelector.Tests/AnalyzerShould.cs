@@ -16,8 +16,11 @@ using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
 namespace Test;
 
-public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary
-{}
+public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary, System.Windows.Markup.IComponentConnector
+{
+    public void InitializeComponent() {}
+    void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {}
+}
 
 [AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
 public class NonNullableDataTemplateSelector : BarControlTemplateSelector
@@ -26,7 +29,7 @@ public class NonNullableDataTemplateSelector : BarControlTemplateSelector
 }
 ";
         var test = new AnalyzeCS { TestCode = code };
-        DiagnosticResult expected = VerifyCS.Diagnostic("ATS01").WithLocation(12, 14).WithArguments(string.Empty);
+        DiagnosticResult expected = VerifyCS.Diagnostic("ATS01").WithLocation(15, 14).WithArguments(string.Empty);
         test.ExpectedDiagnostics.Add(expected);
         await test.RunAsync(TestContext.Current.CancellationToken);
     }
@@ -42,8 +45,11 @@ using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
 namespace Test;
 
-public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary
-{}
+public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary, System.Windows.Markup.IComponentConnector
+{
+    public void InitializeComponent() {}
+    void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {}
+}
 
 [AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
 public partial class NonNullableDataTemplateSelector : Selector
@@ -52,7 +58,7 @@ public partial class NonNullableDataTemplateSelector : Selector
 }
 ";
         var test = new AnalyzeCS { TestCode = code };
-        DiagnosticResult expected = VerifyCS.Diagnostic("ATS02").WithLocation(13, 22).WithArguments(string.Empty);
+        DiagnosticResult expected = VerifyCS.Diagnostic("ATS02").WithLocation(16, 22).WithArguments(string.Empty);
         test.ExpectedDiagnostics.Add(expected);
         await test.RunAsync(TestContext.Current.CancellationToken);
     }
@@ -68,8 +74,11 @@ using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
 namespace Test;
 
-public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary
-{}
+public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary, System.Windows.Markup.IComponentConnector
+{
+    public void InitializeComponent() {}
+    void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {}
+}
 
 [AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
 public partial class NonNullableDataTemplateSelector
@@ -78,7 +87,37 @@ public partial class NonNullableDataTemplateSelector
 }
 ";
         var test = new AnalyzeCS { TestCode = code };
-        DiagnosticResult expected = VerifyCS.Diagnostic("ATS02").WithSpan(13, 22, 13, 53).WithArguments("Base class must be ItemTemplateSelector or DataTemplateSelector");
+        DiagnosticResult expected = VerifyCS.Diagnostic("ATS02").WithSpan(16, 22, 16, 53).WithArguments("Base class must be ItemTemplateSelector or DataTemplateSelector");
+        test.ExpectedDiagnostics.Add(expected);
+        await test.RunAsync(TestContext.Current.CancellationToken);
+    }
+
+    [Fact]
+    public async Task ReportsDiagnosticError_ATS03_MissingXClassAttribute()
+    {
+        string code = @"
+using AutoTemplateSelector.Generator;
+using System.Windows;
+using System.Windows.Controls;
+
+using ActiproSoftware.Windows.Controls.Bars.Mvvm;
+
+namespace Test;
+
+public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary
+{
+}
+
+[AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
+public partial class NonNullableDataTemplateSelector : DataTemplateSelector
+{
+    public DataTemplate Value { get; set; }
+}
+";
+        var test = new AnalyzeCS { TestCode = code };
+        DiagnosticResult expected = VerifyCS.Diagnostic("ATS03")
+            .WithSpan(14, 30, 14, 79)
+            .WithArguments("Test.NonNullableDataTemplateSelectorResourceDictionary");
         test.ExpectedDiagnostics.Add(expected);
         await test.RunAsync(TestContext.Current.CancellationToken);
     }
@@ -95,8 +134,11 @@ using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
 namespace Test;
 
-public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary
-{}
+public class NonNullableDataTemplateSelectorResourceDictionary : ResourceDictionary, System.Windows.Markup.IComponentConnector
+{
+public void InitializeComponent() {}
+void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {}
+}
 
 [AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
 public partial class NonNullableDataTemplateSelector : DataTemplateSelector

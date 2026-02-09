@@ -4,7 +4,7 @@ using AutoTemplateSelector.Generator;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
 /// This class has to be partial, and decorated with <see cref="AutoTemplateSelector"/>,

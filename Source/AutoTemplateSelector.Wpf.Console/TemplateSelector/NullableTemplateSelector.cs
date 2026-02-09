@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TemplateSelector.Wpf.Console;
+namespace AutoTemplateSelector.Wpf.Console;
 
 /// <summary>
 /// some doc to be filled in later.

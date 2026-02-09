@@ -7,7 +7,7 @@
         <Nullable>enable</Nullable>
         <UseWpf>true</UseWpf>
         <IsPackable>false</IsPackable>
-        <RootNamespace>Bars.Mvvm.TemplateSelector.Console</RootNamespace>
+        <RootNamespace>AutoTemplateSelector.Wpf.Console</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

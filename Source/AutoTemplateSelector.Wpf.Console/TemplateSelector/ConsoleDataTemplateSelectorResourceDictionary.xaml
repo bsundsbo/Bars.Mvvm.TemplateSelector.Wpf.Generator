@@ -1,7 +1,7 @@
-﻿<ResourceDictionary x:Class="TemplateSelector.Wpf.Console.ConsoleControlTemplateSelectorResourceDictionary"
+﻿<ResourceDictionary x:Class="AutoTemplateSelector.Wpf.Console.ConsoleControlTemplateSelectorResourceDictionary"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:console="clr-namespace:TemplateSelector.Wpf.Console"
+                    xmlns:console="clr-namespace:AutoTemplateSelector.Wpf.Console"
                     xmlns:bars="http://schemas.actiprosoftware.com/winfx/xaml/bars">
     <ItemContainerTemplate x:Key="{x:Static console:ConsoleControlTemplateSelectorResourceKeys.BlueButtonTemplate}"
                            DataType="sample:BlueBarButtonViewModel">

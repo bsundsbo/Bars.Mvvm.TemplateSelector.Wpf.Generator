@@ -1,6 +1,6 @@
 ﻿using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
-namespace TemplateSelector.Wpf.Console;
+namespace AutoTemplateSelector.Wpf.Console;
 
 /// <summary>
 /// Documentation to be filled in later.

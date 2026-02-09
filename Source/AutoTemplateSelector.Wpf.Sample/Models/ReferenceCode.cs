@@ -1,6 +1,6 @@
 using ActiproSoftware.Windows;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
 /// Sample reference code model.

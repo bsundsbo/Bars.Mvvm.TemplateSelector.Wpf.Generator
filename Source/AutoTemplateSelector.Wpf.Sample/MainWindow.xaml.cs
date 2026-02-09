@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

@@ -4,7 +4,7 @@ using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 using MahApps.Metro.IconPacks;
 using System.Windows.Media;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 public static class AdditionalExtensions
 {

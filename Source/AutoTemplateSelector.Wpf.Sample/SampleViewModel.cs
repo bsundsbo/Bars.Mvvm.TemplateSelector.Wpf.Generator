@@ -1,7 +1,7 @@
 ﻿using ActiproSoftware.Windows;
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
 /// Main viewmodel for the sample application.

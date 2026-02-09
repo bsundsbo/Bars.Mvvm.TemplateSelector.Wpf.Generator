@@ -3,7 +3,7 @@ using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 using AutoTemplateSelector.Generator;
 using System.Windows;
 
-namespace Bars.Mvvm.FluidGenerator.Sample;
+namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
 /// This class has to be partial, and decorated with <see cref="AutoTemplateSelector"/>,
