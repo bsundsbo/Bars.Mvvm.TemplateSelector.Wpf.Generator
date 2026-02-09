@@ -16,7 +16,8 @@
                           ReferenceOutputAssembly="true" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" />
+        <PackageReference Include="ActiproSoftware.Controls.WPF.Bars.Mvvm" Version="25.1.3" />
+        <PackageReference Include="ActiproSoftware.Controls.WPF.Bars" Version="25.1.3" />
     </ItemGroup>
     <ItemGroup>
       <None Include="TemplateSelector\NullableTemplateSelectorResourceDictionary.xaml" />

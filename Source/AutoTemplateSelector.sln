@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = ..\README.md
 		Directory.Build.props = Directory.Build.props
 		.ruleset = .ruleset
-		Directory.Packages.props = Directory.Packages.props
 		NuGet.Config = NuGet.Config
 		..\Version.json = ..\Version.json
 	EndProjectSection
@@ -33,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\build-and-publish.yaml = ..\.github\workflows\build-and-publish.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTemplateSelector.Tests", "AutoTemplateSelector.Tests\AutoTemplateSelector.Tests.csproj", "{7803D5D2-D03D-4A5E-8B13-7FCDF76AF7BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +54,10 @@ Global
 		{58D48DB1-EDD8-4372-81B5-2B87A5CD35E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D48DB1-EDD8-4372-81B5-2B87A5CD35E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58D48DB1-EDD8-4372-81B5-2B87A5CD35E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7803D5D2-D03D-4A5E-8B13-7FCDF76AF7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7803D5D2-D03D-4A5E-8B13-7FCDF76AF7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7803D5D2-D03D-4A5E-8B13-7FCDF76AF7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7803D5D2-D03D-4A5E-8B13-7FCDF76AF7BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +69,6 @@ Global
 		{0D29772A-5109-4D9B-8546-C29CAECF3B74} = {32D7E9E8-71A2-4896-A862-19BEFC0F54B6}
 		{58D48DB1-EDD8-4372-81B5-2B87A5CD35E3} = {9BBF685A-19EE-4B77-BF2A-F8AB3A9A4CA7}
 		{BC614007-5140-4E86-99A7-0BA751A87176} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{7803D5D2-D03D-4A5E-8B13-7FCDF76AF7BF} = {115177F1-0D7E-4995-91AA-C8EFCC491FD8}
 	EndGlobalSection
 EndGlobal

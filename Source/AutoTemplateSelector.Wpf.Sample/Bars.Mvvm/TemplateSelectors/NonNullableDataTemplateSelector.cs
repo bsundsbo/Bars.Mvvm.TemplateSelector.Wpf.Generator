@@ -27,7 +27,7 @@ public partial class NonNullableDataTemplateSelector : BarControlTemplateSelecto
     /// <summary>
     /// The template used for a red button.
     /// </summary>
-    private ItemContainerTemplate RedButtonTemplate { get; set; }
+    public ItemContainerTemplate RedButtonTemplate { get; set; }
 
     public override DataTemplate SelectTemplate(object item, ItemsControl parentItemsControl)
     {
