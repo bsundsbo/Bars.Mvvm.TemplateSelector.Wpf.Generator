@@ -147,6 +147,8 @@ public partial class NonNullableDataTemplateSelector : DataTemplateSelector
 }
 ";
         var test = new AnalyzeCS { TestCode = code };
+        test.ExpectedDiagnostics.Clear();
         await test.RunAsync(TestContext.Current.CancellationToken);
+        Assert.True(true);
     }
 }

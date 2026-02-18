@@ -1,0 +1,4 @@
+    [System.ThreadStatic]
+    private static {{ResourceDictionaryClassName}} _instance;
+
+    public static {{ResourceDictionaryClassName}} Instance => _instance ??= new {{ResourceDictionaryClassName}}();

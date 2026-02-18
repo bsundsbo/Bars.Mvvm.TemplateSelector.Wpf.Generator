@@ -2,19 +2,24 @@
 using System;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class AutoTemplateSelectorAttribute : Attribute
+public sealed class AutoTemplateSelectorAttribute(Type resourceDictionary) : Attribute
 {
-    private Type ResourceDictionaryType { get; }
+    /// <summary>
+    /// The type of the resource dictionary that contains the templates.
+    /// </summary>
+    public Type ResourceDictionary { get; init; } = resourceDictionary;
 
     /// <summary>
-    /// This interface marks a TemplateSelector class that is used to generate ResourceDictionary,
-    /// ResourceKeys and map these within the ResourceDictionary.
+    /// The type of the partial static class to generate the resource keys in.
     /// </summary>
-    /// <param name="resourceDictionaryType">The type of the resource dictionary that contains the templates.
-    /// This type has to be a ResourceDictionary XAML file with x:Class referencing the same types.
-    ///</param>
-    public AutoTemplateSelectorAttribute(Type resourceDictionaryType)
+    public Type? ResourceDictionaryKey { get; init; }
+
+    ///  <summary>
+    ///  This interface marks a TemplateSelector class used to generate ResourceDictionary,
+    ///  ResourceKeys and map these within the ResourceDictionary.
+    ///  </summary>
+    public AutoTemplateSelectorAttribute(Type resourceDictionary, Type resourceDictionaryKey)
+        : this(resourceDictionary)
     {
-        ResourceDictionaryType = resourceDictionaryType;
     }
 }

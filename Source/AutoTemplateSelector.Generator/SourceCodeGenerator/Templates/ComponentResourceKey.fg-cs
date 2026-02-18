@@ -1,0 +1,4 @@
+    private static System.Windows.ComponentResourceKey {{VariableName}};
+
+    public static System.Windows.ResourceKey {{PropertyName}}
+        => {{VariableName}} ??= new System.Windows.ComponentResourceKey(typeof({{ResourceKeyClassName}}), nameof({{PropertyName}}));

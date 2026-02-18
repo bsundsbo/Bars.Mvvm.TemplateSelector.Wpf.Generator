@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using System;
+using System.Text;
 using System.Threading;
 
 namespace AutoTemplateSelector.Generator;
@@ -35,9 +36,14 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 
                 try
                 {
-                    string sourceCode = AutoTemplateSelectorCodeGenerator.Instance.Generate(classSymbol, dictionarySymbol, isNullableContext);
+                    string selectorClassCode = AutoTemplateSelectorClassGenerator.CreateClass(classSymbol);
+                    ctx.AddSource($"{classSymbol.Name}.g.cs", selectorClassCode);
 
-                    ctx.AddSource($"{classSymbol.Name}.g.cs", sourceCode);
+                    var resourceDictionaryClassCode = AutoTemplateSelectorDictionaryClassGenerator.CreateClass(dictionarySymbol);
+                    ctx.AddSource($"{classSymbol.Name}.{dictionarySymbol.Name}.g.cs", resourceDictionaryClassCode);
+
+                    string sourceCode = AutoTemplateSelectorResourceKeyClassGenerator.GenerateResourceKeys(classSymbol);
+                    ctx.AddSource($"{classSymbol.Name}.SelectorResourceKeys.g.cs", sourceCode);
                     ctx.ReportDiagnostic(Diagnostic.Create(
                         new DiagnosticDescriptor("GEN001", "Found Dictionary", $"Class {classSymbol.Name} references ResourceDictionary: {dictName}", "Generator", DiagnosticSeverity.Info, true),
                         classSymbol.Locations.FirstOrDefault()));

@@ -39,8 +39,8 @@
         <PackageReference Include="Scriban" Version="6.2.1" IncludeAssets="Build" PrivateAssets="all" />
     </ItemGroup>
     <ItemGroup>
-      <EmbeddedResource Include="BarTemplateSelectorCodeGenerator\Templates\ComponentResourceKey.fg-cs" />
-      <EmbeddedResource Include="BarTemplateSelectorCodeGenerator\Templates\ResourceDictionaryInstance.fg-cs" />
+      <EmbeddedResource Include="SourceCodeGenerator\Templates\ComponentResourceKey.fg-cs" />
+      <EmbeddedResource Include="SourceCodeGenerator\Templates\ResourceDictionaryInstance.fg-cs" />
     </ItemGroup>
 
     <PropertyGroup>

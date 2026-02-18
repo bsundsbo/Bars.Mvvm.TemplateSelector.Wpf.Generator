@@ -10,12 +10,12 @@ namespace AutoTemplateSelector.Wpf.Sample;
 /// The type passed to the constructor of the attribute must be a resource dictionary with x:Class referencing this class in
 /// the XAML.
 /// <para>
-/// The properties of <see cref="NullableGalleryItemTemplateSelector"/> are generated into <see cref="CustomGalleryTemplateSelectorResourceKeys"/>
+/// The properties of <see cref="NullableGalleryItemTemplateSelector"/> are generated into <see cref="NonNullableDataTemplateSelectorResourceKeys"/>
 /// and mapped within the generated partial class <see cref="NullableGalleryItemTemplateSelector"/> so they can be returned in the
 /// overriden <see cref="SelectTemplate"/> method.
 /// </para>
 /// </summary>
-[AutoTemplateSelector(typeof(NullableGalleryItemTemplateSelectorResourceDictionary))]
+[AutoTemplateSelector(typeof(NullableDataTemplateSelectorResourceDictionary))]
 public partial class NullableGalleryItemTemplateSelector : BarGalleryItemTemplateSelector
 {
     /// <summary>
