@@ -39,22 +39,3 @@ internal static class AutoTemplateSelectorClassGenerator
         return sourceBuilder.ToString();
     }
 }
-
-[SuppressMessage("Sonar", "SA1402", Justification = "Internal class")]
-internal static class PropertyParser
-{
-    public static ImmutableArray<IPropertySymbol> GetRelevantProperties(INamedTypeSymbol? classSymbol)
-    {
-        ImmutableArray<IPropertySymbol> ret = [];
-        if (classSymbol == null)
-        {
-            return ret;
-        }
-
-        var properties = classSymbol.GetMembers()
-            .OfType<IPropertySymbol>()
-            .Where(p =>  p is {IsStatic: false, IsReadOnly: false})
-            .ToImmutableArray();
-        return properties;
-    }
-}

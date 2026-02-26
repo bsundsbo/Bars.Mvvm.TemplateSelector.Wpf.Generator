@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Scriban;
-using System.Collections.Immutable;
 
 namespace AutoTemplateSelector.Generator;
 

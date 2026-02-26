@@ -47,7 +47,8 @@ internal sealed class Analyzer : DiagnosticAnalyzer
             return;
         }
 
-        if (!HasAutoTemplateSelectorAttribute(namedType, out var autoTemplateSelectorAttribute))
+        var autoTemplateSelectorAttribute = AttributeParser.GetAutoTemplateSelectorAttributeData(namedType);
+        if (autoTemplateSelectorAttribute is null)
         {
             return;
         }
@@ -66,8 +67,7 @@ internal sealed class Analyzer : DiagnosticAnalyzer
 
         // Heuristic: if the ResourceDictionary has x:Class, the generated code-behind type implements IComponentConnector.
         // This avoids parsing XAML in the analyzer.
-        if (autoTemplateSelectorAttribute == null
-            || !TryGetResourceDictionaryTypeArgument(autoTemplateSelectorAttribute, out var resourceDictionaryType))
+        if (!TryGetResourceDictionaryTypeArgument(autoTemplateSelectorAttribute, out var resourceDictionaryType))
         {
             return;
         }
@@ -123,15 +123,6 @@ internal sealed class Analyzer : DiagnosticAnalyzer
     public static bool IsClass(INamedTypeSymbol? namedType)
     {
         return namedType?.TypeKind == TypeKind.Class;
-    }
-
-    private static bool HasAutoTemplateSelectorAttribute(INamedTypeSymbol namedType, out AttributeData? attributeData)
-    {
-        attributeData = namedType.GetAttributes().FirstOrDefault(x =>
-            x.AttributeClass?.Name is nameof(AutoTemplateSelectorAttribute) &&
-            x.AttributeClass.ContainingNamespace.ToDisplayString() == typeof(AutoTemplateSelectorAttribute).Namespace);
-
-        return attributeData is not null;
     }
 
     private static bool TryGetResourceDictionaryTypeArgument(AttributeData autoTemplateSelectorAttribute, out INamedTypeSymbol resourceDictionaryType)

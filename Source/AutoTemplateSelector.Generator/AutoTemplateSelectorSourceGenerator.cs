@@ -42,8 +42,13 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
                     var resourceDictionaryClassCode = AutoTemplateSelectorDictionaryClassGenerator.CreateClass(dictionarySymbol);
                     ctx.AddSource($"{classSymbol.Name}.{dictionarySymbol.Name}.g.cs", resourceDictionaryClassCode);
 
-                    string sourceCode = AutoTemplateSelectorResourceKeyClassGenerator.GenerateResourceKeys(classSymbol);
-                    ctx.AddSource($"{classSymbol.Name}.SelectorResourceKeys.g.cs", sourceCode);
+                    var attributeDetails = AttributeParser.GetAttributeDetails(classSymbol);
+                    if (attributeDetails is not null)
+                    {
+                        string sourceCode = AutoTemplateSelectorResourceKeyClassGenerator.GenerateResourceKeys(classSymbol);
+                        ctx.AddSource($"{classSymbol.Name}.{attributeDetails.ResourceDictionaryKey}.g.cs", sourceCode);
+                    }
+
                     ctx.ReportDiagnostic(Diagnostic.Create(
                         new DiagnosticDescriptor("GEN001", "Found Dictionary", $"Class {classSymbol.Name} references ResourceDictionary: {dictName}", "Generator", DiagnosticSeverity.Info, true),
                         classSymbol.Locations.FirstOrDefault()));
