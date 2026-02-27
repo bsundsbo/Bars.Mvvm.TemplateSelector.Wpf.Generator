@@ -10,23 +10,23 @@ namespace AutoTemplateSelector.Generator;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 internal sealed class Analyzer : DiagnosticAnalyzer
 {
-    private const string _category = "AutoTemplateSelector";
+    private const string Category = "AutoTemplateSelector";
 
-    private static readonly DiagnosticDescriptor _rule01 = new("ATS01", "Type must be partial", "Type with AutoTemplateSelectorAttribute must be partial", _category,
+    private static readonly DiagnosticDescriptor _rule01 = new("ATS01", "Type must be partial", "Type with AutoTemplateSelectorAttribute must be partial", Category,
         DiagnosticSeverity.Error, isEnabledByDefault: true, description: "Type must be partial with ProtoContract attribute.");
-    private static readonly DiagnosticDescriptor _rule02 = new("ATS02", "Missing or incorrect base type", "Class must derive from DataTemplate or ItemControlTemplate", _category,
+    private static readonly DiagnosticDescriptor _rule02 = new("ATS02", "Missing or incorrect base type", "Class must derive from DataTemplate or ItemControlTemplate", Category,
         DiagnosticSeverity.Error, isEnabledByDefault: true, description: "Class must derive from DataTemplate or ItemControlTemplate.");
 
     private static readonly DiagnosticDescriptor _rule03 = new(
         "ATS03",
         "Missing x:Class on ResourceDictionary XAML",
         "The ResourceDictionary type passed to AutoTemplateSelectorAttribute must be declared as <ResourceDictionary x:Class=\"{0}\"",
-        _category,
+        Category,
         DiagnosticSeverity.Error,
         isEnabledByDefault: true,
         description: "Ensures the ResourceDictionary type argument corresponds to a XAML file with x:Class so WPF can connect generated components.");
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return [_rule01, _rule02, _rule03]; } }
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [_rule01, _rule02, _rule03];
 
     public override void Initialize(AnalysisContext context)
     {

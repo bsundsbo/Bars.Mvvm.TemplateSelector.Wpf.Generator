@@ -1,15 +1,13 @@
 ﻿using System.Linq;
 using Microsoft.CodeAnalysis;
 using Scriban;
-using System;
 using System.Text;
-using System.Threading;
 
 namespace AutoTemplateSelector.Generator;
 
 internal static class AutoTemplateSelectorDictionaryClassGenerator
 {
-    private static readonly Template _resourceDictionaryInstanceTemplate = Template.Parse(EmbeddedResource.GetContent("Templates/ResourceDictionaryInstance.fg-cs"));
+    private static readonly Template ResourceDictionaryInstanceTemplate = Template.Parse(EmbeddedResource.GetContent("Templates/ResourceDictionaryInstance.fg-cs"));
 
     public static string CreateClass(INamedTypeSymbol dictionaryType)
     {
@@ -23,7 +21,7 @@ internal static class AutoTemplateSelectorDictionaryClassGenerator
         sourceBuilder.AppendLine($"[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]");
         sourceBuilder.AppendLine($"sealed partial class {dictionaryType.Name} : System.Windows.ResourceDictionary");
         sourceBuilder.AppendLineStartBracket(0);
-        sourceBuilder.Append(_resourceDictionaryInstanceTemplate.Render(new {
+        sourceBuilder.Append(ResourceDictionaryInstanceTemplate.Render(new {
             ResourceDictionaryClassName = dictionaryType.Name,
         }, member => member.Name));
         sourceBuilder.AppendLine();

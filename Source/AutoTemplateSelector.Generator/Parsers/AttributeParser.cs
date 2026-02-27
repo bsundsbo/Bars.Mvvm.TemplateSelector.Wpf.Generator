@@ -1,8 +1,5 @@
 ﻿using System.Linq;
 using Microsoft.CodeAnalysis;
-using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace AutoTemplateSelector.Generator;
 
@@ -38,36 +35,22 @@ internal static class AttributeParser
         }
 
         // Create a new instance of the AttributeModel class
-        // get named arguments of the attrubute for ResourceDictionary and ResourceDictionaryKey
+        // get named arguments of the attribute for the ResourceDictionary and ResourceDictionaryKey
         // assign these to a new instance of AttributeModel
-        var model = new AttributeModel()
+        var resourceDictionaryType = attributeData.ConstructorArguments[0].Value as INamedTypeSymbol;
+        var resourceDictionaryKeySymbol =
+            GetNamedArgumentValue(attributeData, nameof(AutoTemplateSelectorAttribute.ResourceDictionaryKey));
+        if (resourceDictionaryKeySymbol is null || resourceDictionaryType is null)
         {
-            ResourceDictionarySymbol = attributeData.ConstructorArguments[0].Value as ITypeSymbol,
-            ResourceDictionaryKeySymbol = GetNamedArgumentValue(attributeData, nameof(AutoTemplateSelectorAttribute.ResourceDictionaryKey))
-        };
-        return model;
+            return null;
+        }
+
+        return new AttributeModel(resourceDictionaryType, resourceDictionaryKeySymbol);
     }
 
     private static INamedTypeSymbol? GetNamedArgumentValue(AttributeData attributeData, string argumentName)
     {
         return attributeData.NamedArguments.FirstOrDefault(na => na.Key == argumentName).Value.Value as INamedTypeSymbol;
-    }
-
-    /// <summary>
-    /// Contains the data from the <see cref="AutoTemplateSelectorAttribute"/>.
-    /// </summary>
-    internal record AttributeModel
-    {
-        /// <summary>
-        /// The <see cref="INamedTypeSymbol"/> of the <see cref="AutoTemplateSelectorAttribute.ResourceDictionary"/> argument.
-        /// </summary>
-        public ITypeSymbol? ResourceDictionarySymbol { get; init; }
-        /// <summary>
-        /// The <see cref="INamedTypeSymbol"/> of the <see cref="AutoTemplateSelectorAttribute.ResourceDictionaryKey"/> argument.
-        /// </summary>
-        public INamedTypeSymbol? ResourceDictionaryKeySymbol { get; init; }
-        public string? ResourceDictionary => ResourceDictionarySymbol?.Name;
-        public string? ResourceDictionaryKey => ResourceDictionaryKeySymbol?.Name;
     }
 }
 

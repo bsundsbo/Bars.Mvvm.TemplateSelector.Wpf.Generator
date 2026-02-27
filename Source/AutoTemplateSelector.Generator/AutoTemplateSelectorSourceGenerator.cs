@@ -1,7 +1,6 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using System;
-using System.Text;
 using System.Threading;
 
 namespace AutoTemplateSelector.Generator;
@@ -18,39 +17,28 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
         var attributedClasses = context.SyntaxProvider
             .ForAttributeWithMetadataName(fullyQualifiedMetadataName: attributeName,
 
-                predicate: static (node, _) => true, // accept all — filtered later
+                predicate: static (_, _) => true, // accept all — filtered later
                 transform: TransformAnalyzedTypes)
-            .Where(static pair => pair.ClassSymbol is not null && pair.DictionaryType is not null)
+            .Where(static pair => pair.ClassSymbol is not null && pair.AttributeModel is not null)
             .Collect();
 
         context.RegisterSourceOutput(attributedClasses, static (ctx, items) =>
         {
-            foreach (var (classSymbol, dictionarySymbol, isNullableContext) in items!)
+            foreach (var (classSymbol, attributeModel, isNullableContext) in items!)
             {
-                if (classSymbol is null)
-                {
-                    continue;
-                }
-
-                var dictName = dictionarySymbol.ToDisplayString();
-
                 try
                 {
                     string selectorClassCode = AutoTemplateSelectorClassGenerator.CreateClass(classSymbol);
                     ctx.AddSource($"{classSymbol.Name}.g.cs", selectorClassCode);
 
-                    var resourceDictionaryClassCode = AutoTemplateSelectorDictionaryClassGenerator.CreateClass(dictionarySymbol);
-                    ctx.AddSource($"{classSymbol.Name}.{dictionarySymbol.Name}.g.cs", resourceDictionaryClassCode);
+                    var resourceDictionaryClassCode = AutoTemplateSelectorDictionaryClassGenerator.CreateClass(attributeModel.ResourceDictionarySymbol);
+                    ctx.AddSource($"{classSymbol.Name}.{attributeModel.ResourceDictionary}.g.cs", resourceDictionaryClassCode);
 
-                    var attributeDetails = AttributeParser.GetAttributeDetails(classSymbol);
-                    if (attributeDetails is not null)
-                    {
-                        string sourceCode = AutoTemplateSelectorResourceKeyClassGenerator.GenerateResourceKeys(classSymbol);
-                        ctx.AddSource($"{classSymbol.Name}.{attributeDetails.ResourceDictionaryKey}.g.cs", sourceCode);
-                    }
+                    string sourceCode = AutoTemplateSelectorResourceKeyClassGenerator.GenerateResourceKeys(classSymbol);
+                    ctx.AddSource($"{classSymbol.Name}.{attributeModel.ResourceDictionaryKey}.g.cs", sourceCode);
 
                     ctx.ReportDiagnostic(Diagnostic.Create(
-                        new DiagnosticDescriptor("GEN001", "Found Dictionary", $"Class {classSymbol.Name} references ResourceDictionary: {dictName}", "Generator", DiagnosticSeverity.Info, true),
+                        new DiagnosticDescriptor("GEN001", "Found Dictionary", $"Class {classSymbol.Name} references ResourceDictionary: {attributeModel.ResourceDictionary} and ResourceKeys {attributeModel.ResourceDictionaryKey}", "Generator", DiagnosticSeverity.Info, true),
                         classSymbol.Locations.FirstOrDefault()));
                 }
                 catch (Exception e)
@@ -64,34 +52,35 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
     }
 
 #pragma warning disable SA1414
-    private static (INamedTypeSymbol? ClassSymbol, INamedTypeSymbol DictionaryType, bool IsNullableContext) TransformAnalyzedTypes(GeneratorAttributeSyntaxContext ctx, CancellationToken ct)
+    private static (INamedTypeSymbol ClassSymbol, AttributeModel AttributeModel, bool IsNullableContext) TransformAnalyzedTypes(GeneratorAttributeSyntaxContext ctx, CancellationToken ct)
 #pragma warning restore SA1414
     {
         try
         {
-            var classSymbol = ctx.TargetSymbol as INamedTypeSymbol;
-            if (classSymbol == null || !Analyzer.IsClass(classSymbol) || !Analyzer.IsPartial(classSymbol) || !Analyzer.HasValidBaseClass(classSymbol))
+            if (ctx.TargetSymbol is not INamedTypeSymbol classSymbol
+                || !Analyzer.IsClass(classSymbol)
+                || !Analyzer.IsPartial(classSymbol)
+                || !Analyzer.HasValidBaseClass(classSymbol))
             {
                 return default;
             }
 
-            var attr = ctx.Attributes.FirstOrDefault();
-            if (attr is null || attr.ConstructorArguments.Length == 0)
+            var attr = ctx.Attributes
+                .Select(AttributeParser.GetAttributeDetails)
+                .FirstOrDefault(aa => aa != null);
+            if (attr is null)
             {
                 return default;
             }
 
-            var arg = attr.ConstructorArguments[0];
             var nullableContext = NullableContextUtilities.GetEffectiveNullableContext(ctx.SemanticModel, ctx.TargetNode);
             bool isNullable = nullableContext == NullableContextOptions.Enable;
-            return arg.Value is not INamedTypeSymbol dictType
-                ? default((INamedTypeSymbol, INamedTypeSymbol, bool))
-                : (classSymbol, dictType, isNullable);
+            return  (classSymbol, attr, isNullable);
 
         }
         catch (Exception)
         {
-            return default((INamedTypeSymbol, INamedTypeSymbol, bool));
+            return default((INamedTypeSymbol, AttributeModel, bool));
         }
     }
 }
