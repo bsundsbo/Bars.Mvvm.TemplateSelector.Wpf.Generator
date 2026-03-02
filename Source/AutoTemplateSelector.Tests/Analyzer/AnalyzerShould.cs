@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.Testing;
 using Xunit;
-using AnalyzeCS = AutoTemplateSelector.Tests.AnalyzerFixture<AutoTemplateSelector.Generator.Analyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
-using VerifyCS = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<AutoTemplateSelector.Generator.Analyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+using AnalyzeCS = AutoTemplateSelector.Tests.WpfAnalyzerFixture<AutoTemplateSelector.Generator.AutoTemplateSelectorDecoratedTypeAnalyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+using VerifyCS = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<AutoTemplateSelector.Generator.AutoTemplateSelectorDecoratedTypeAnalyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 namespace AutoTemplateSelector.Tests;
 
 public class AnalyzerShould

@@ -11,11 +11,11 @@ namespace AutoTemplateSelector.Tests;
 /// </summary>
 /// <typeparam name="TAnalyzer"></typeparam>
 /// <typeparam name="TVerifier"></typeparam>
-internal class AnalyzerFixture<TAnalyzer, TVerifier> : CSharpAnalyzerTest<TAnalyzer, TVerifier>
+internal class WpfAnalyzerFixture<TAnalyzer, TVerifier> : CSharpAnalyzerTest<TAnalyzer, TVerifier>
     where TAnalyzer : DiagnosticAnalyzer, new()
     where TVerifier : IVerifier, new()
 {
-    public AnalyzerFixture()
+    public WpfAnalyzerFixture()
     {
         TestState.AdditionalReferences.Add(
             MetadataReference.CreateFromFile(typeof(AutoTemplateSelectorAttribute).Assembly.Location));

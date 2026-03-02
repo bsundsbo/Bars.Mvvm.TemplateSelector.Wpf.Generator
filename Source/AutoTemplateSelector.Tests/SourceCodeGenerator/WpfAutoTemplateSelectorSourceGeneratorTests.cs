@@ -21,7 +21,7 @@ public partial class SelectorResourceDictionary : System.Windows.ResourceDiction
     void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {}
 }
 
-[AutoTemplateSelector.Generator.AutoTemplateSelector(typeof(SelectorResourceDictionary), ResourceDictionaryKey = typeof(SelectorResourceKeys)) ]
+[AutoTemplateSelector.Generator.AutoTemplateSelector(ResourceDictionary = typeof(SelectorResourceDictionary), ResourceKeys = typeof(SelectorResourceKeys)) ]
 public partial class Selector : System.Windows.Controls.DataTemplateSelector
 {
     public System.Windows.DataTemplate Property { get; set; }
@@ -95,8 +95,7 @@ static partial class SelectorResourceKeys
             }
         };
         test.ExpectedDiagnostics.Add(new DiagnosticResult("GEN001", DiagnosticSeverity.Info)
-            .WithSpan(12,22,12,30)
-            .WithMessage("Class Selector references ResourceDictionary: Test.SelectorResourceDictionary"));
+            .WithMessage("Class Selector references ResourceDictionary: SelectorResourceDictionary and ResourceKeys SelectorResourceKeys"));
         await test.RunAsync(TestContext.Current.CancellationToken);
         Assert.True(true);
     }

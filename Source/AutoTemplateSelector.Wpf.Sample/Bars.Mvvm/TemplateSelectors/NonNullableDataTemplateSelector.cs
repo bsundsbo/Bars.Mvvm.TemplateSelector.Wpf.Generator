@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using System.Diagnostics.CodeAnalysis;
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 using AutoTemplateSelector.Generator;
 using System.Windows;
@@ -16,7 +17,9 @@ namespace AutoTemplateSelector.Wpf.Sample;
 /// overriden <see cref="SelectTemplate"/> method.
 /// </para>
 /// </summary>
-[AutoTemplateSelector(typeof(NonNullableDataTemplateSelectorResourceDictionary))]
+[AutoTemplateSelector(
+    ResourceDictionary = typeof(NonNullableDataTemplateSelectorResourceDictionary),
+    ResourceKeys = typeof(TemplateSelectorResourceKeys))]
 public partial class NonNullableDataTemplateSelector : BarControlTemplateSelector
 {
     /// <summary>

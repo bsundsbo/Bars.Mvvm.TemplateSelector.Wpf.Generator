@@ -9,6 +9,7 @@
 
 | Rule ID | Category              | Severity | Notes                                                                    |
 |---------|----------------------|----------|--------------------------------------------------------------------------|
-| ATS01   | AutoTemplateSelector | Error    | Requires classes decorated with the attribute to be marked as partial    |
+| ATS01   | AutoTemplateSelector | Error    | Decorated class must be partial                                          |
 | ATS02   | AutoTemplateSelector | Error    | Class must derive from DataTemplate or ItemControlTemplate               |
 | ATS03   | AutoTemplateSelector | Error    | XAML file must reference this type in it's XAML declaration with x:Class |
+| ATS04   | AutoTemplateSelector | Error    | Required AutoTemplateSelector attribute arguments missing                |

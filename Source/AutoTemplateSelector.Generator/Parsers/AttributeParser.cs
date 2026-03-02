@@ -34,21 +34,17 @@ internal static class AttributeParser
             return null;
         }
 
-        // Create a new instance of the AttributeModel class
-        // get named arguments of the attribute for the ResourceDictionary and ResourceDictionaryKey
-        // assign these to a new instance of AttributeModel
-        var resourceDictionaryType = attributeData.ConstructorArguments[0].Value as INamedTypeSymbol;
-        var resourceDictionaryKeySymbol =
-            GetNamedArgumentValue(attributeData, nameof(AutoTemplateSelectorAttribute.ResourceDictionaryKey));
-        if (resourceDictionaryKeySymbol is null || resourceDictionaryType is null)
+        var resourceDictionary = GetNamedArgumentValue(attributeData, nameof(AutoTemplateSelectorAttribute.ResourceDictionary));
+        var resourceKeys = GetNamedArgumentValue(attributeData, nameof(AutoTemplateSelectorAttribute.ResourceKeys));
+        if (resourceKeys is null || resourceDictionary is null)
         {
             return null;
         }
 
-        return new AttributeModel(resourceDictionaryType, resourceDictionaryKeySymbol);
+        return new AttributeModel(resourceDictionary, resourceKeys);
     }
 
-    private static INamedTypeSymbol? GetNamedArgumentValue(AttributeData attributeData, string argumentName)
+    public static INamedTypeSymbol? GetNamedArgumentValue(AttributeData attributeData, string argumentName)
     {
         return attributeData.NamedArguments.FirstOrDefault(na => na.Key == argumentName).Value.Value as INamedTypeSymbol;
     }

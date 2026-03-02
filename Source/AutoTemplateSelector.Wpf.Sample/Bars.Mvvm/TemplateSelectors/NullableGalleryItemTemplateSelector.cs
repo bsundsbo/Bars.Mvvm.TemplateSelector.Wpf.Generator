@@ -1,4 +1,3 @@
-#nullable enable
 using ActiproSoftware.Windows.Controls.Bars.Mvvm;
 using AutoTemplateSelector.Generator;
 using System.Windows;
@@ -6,16 +5,12 @@ using System.Windows;
 namespace AutoTemplateSelector.Wpf.Sample;
 
 /// <summary>
-/// This class has to be partial, and decorated with <see cref="AutoTemplateSelector"/>,
-/// The type passed to the constructor of the attribute must be a resource dictionary with x:Class referencing this class in
-/// the XAML.
-/// <para>
-/// The properties of <see cref="NullableGalleryItemTemplateSelector"/> are generated into <see cref="NonNullableDataTemplateSelectorResourceKeys"/>
-/// and mapped within the generated partial class <see cref="NullableGalleryItemTemplateSelector"/> so they can be returned in the
-/// overriden <see cref="SelectTemplate"/> method.
-/// </para>
+/// This sample demonstrates how to use the <see cref="AutoTemplateSelector"/> attribute
+/// to generate a DataTemplateSelector for a gallery item.
 /// </summary>
-[AutoTemplateSelector(typeof(NullableDataTemplateSelectorResourceDictionary))]
+[AutoTemplateSelector(
+    ResourceKeys = typeof(TemplateSelectorResourceKeys),
+    ResourceDictionary = typeof(NullableGalleryTemplateSelectorResourceDictionary))]
 public partial class NullableGalleryItemTemplateSelector : BarGalleryItemTemplateSelector
 {
     /// <summary>
@@ -39,3 +34,4 @@ public partial class NullableGalleryItemTemplateSelector : BarGalleryItemTemplat
         return base.SelectTemplate(item, container);
     }
 }
+

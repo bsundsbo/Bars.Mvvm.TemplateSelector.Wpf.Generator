@@ -5,10 +5,8 @@ using System;
 /// Attribute to mark a class as a TemplateSelector that should be used to generate ResourceDictionary,
 /// ResourceKeys and map these within the ResourceDictionary.
 /// </summary>
-/// <param name="resourceDictionary"></param>
-/// <param name="resourceDictionaryKey"></param>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class AutoTemplateSelectorAttribute() : Attribute
+public sealed class AutoTemplateSelectorAttribute : Attribute
 {
     /// <summary>
     /// The type of the resource dictionary that contains the templates.
@@ -16,7 +14,7 @@ public sealed class AutoTemplateSelectorAttribute() : Attribute
     public Type? ResourceDictionary { get; set; }
 
     /// <summary>
-    /// The type of the partial static class to generate the resource keys in.
+    /// The type of the <see langword="partial"/> <see langword="static"/> class to generate the resource keys for.
     /// </summary>
-    public Type? ResourceDictionaryKey { get; set; }
+    public Type? ResourceKeys { get; set; }
 }

@@ -10,7 +10,7 @@ public class TemplateSelectorResourceDictionary : System.Windows.ResourceDiction
     void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {}
 }
 
-[AutoTemplateSelector.Generator.AutoTemplateSelector(typeof(TemplateSelectorResourceDictionary), ResourceDictionaryKey = typeof(TemplateSelectorKeys)) ]
+[AutoTemplateSelector.Generator.AutoTemplateSelector]
 public partial class Selector : System.Windows.Controls.DataTemplateSelector
 {
     public System.Windows.DataTemplate? BlueButtonTemplate { get; set; }

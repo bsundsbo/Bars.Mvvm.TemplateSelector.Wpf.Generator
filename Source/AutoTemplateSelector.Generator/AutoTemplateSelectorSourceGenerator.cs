@@ -39,7 +39,7 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
 
                     ctx.ReportDiagnostic(Diagnostic.Create(
                         new DiagnosticDescriptor("GEN001", "Found Dictionary", $"Class {classSymbol.Name} references ResourceDictionary: {attributeModel.ResourceDictionary} and ResourceKeys {attributeModel.ResourceDictionaryKey}", "Generator", DiagnosticSeverity.Info, true),
-                        classSymbol.Locations.FirstOrDefault()));
+                        null));
                 }
                 catch (Exception e)
                 {
@@ -58,9 +58,9 @@ internal class AutoTemplateSelectorSourceGenerator : IIncrementalGenerator
         try
         {
             if (ctx.TargetSymbol is not INamedTypeSymbol classSymbol
-                || !Analyzer.IsClass(classSymbol)
-                || !Analyzer.IsPartial(classSymbol)
-                || !Analyzer.HasValidBaseClass(classSymbol))
+                || !ClassParser.IsClass(classSymbol)
+                || !ClassParser.IsPartial(classSymbol)
+                || !ClassParser.IsTemplateSelector(classSymbol))
             {
                 return default;
             }

@@ -19,7 +19,7 @@ internal static class AutoTemplateSelectorDictionaryClassGenerator
         sourceBuilder.AppendLine($"namespace {dictionaryType.ContainingNamespace.ToDisplayString()};");
         sourceBuilder.AppendLine();
         sourceBuilder.AppendLine($"[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]");
-        sourceBuilder.AppendLine($"sealed partial class {dictionaryType.Name} : System.Windows.ResourceDictionary");
+        sourceBuilder.AppendLine($"sealed partial class {dictionaryType.Name}");
         sourceBuilder.AppendLineStartBracket(0);
         sourceBuilder.Append(ResourceDictionaryInstanceTemplate.Render(new {
             ResourceDictionaryClassName = dictionaryType.Name,

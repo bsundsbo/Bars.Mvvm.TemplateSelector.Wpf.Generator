@@ -5,7 +5,7 @@ using System.Windows.Controls;
 namespace AutoTemplateSelector.Wpf.Console;
 #pragma warning disable SA1402
 
-[AutoTemplateSelector(typeof(TemplateSelectorResourceDictionary), ResourceDictionaryKey = typeof(TemplateSelectorResourceKeys)) ]
+[AutoTemplateSelector(ResourceDictionary = typeof(TemplateSelectorResourceDictionary), ResourceKeys = typeof(TemplateSelectorResourceKeys)) ]
 public partial class TemplateSelector : DataTemplateSelector
 {
     public DataTemplate? BlueButtonTemplate { get; set; }
